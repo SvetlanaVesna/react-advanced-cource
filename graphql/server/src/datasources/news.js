@@ -13,7 +13,7 @@ class NewsAPI extends RESTDataSource {
     }
 
     async getNewsByMention({ mention }) {
-        return await this.get('', {q: mention});
+        return await this.get('', {q: mention, country: 'ru',apiKey: 'b77e32c575c847a7a4b41160f463cc77'});
     }
 
     async getNewsByTitle({ title }) {

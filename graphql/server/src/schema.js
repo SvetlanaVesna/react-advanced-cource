@@ -37,7 +37,7 @@ const typeDefs = gql`
   }
   type Query {
     news:  NewsResponse
-    newsByMention(mention: String!):  [News]
+    newsByMention(mention: String!):  NewsResponse
     me: User
     isFavorite: Boolean
   }
