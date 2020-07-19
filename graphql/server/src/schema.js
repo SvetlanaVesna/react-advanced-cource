@@ -6,43 +6,46 @@ const typeDefs = gql`
       id: ID!
       email: String!
       login: String!
+      news: [News]
   }
-  type Post {
-      id: ID!
-      datetime: Date
-      author: User!
-      comments: [Comment]
-      text: String!
-  }
-  type Comment {
-      id: ID!
-      datetime: Date
-      author: User!
-      text: String!
+  type NewsSource {
+   id: ID
+   name: String
   }
   
-  type NewPostResponse {
-      success: Boolean!
-      message: String
-      posts: [Post]
+  type News {
+      source: NewsSource!
+      author: String
+      title: String
+      description: String
+      url: String
+      urlToImage: String
+      publishedAt: String
+      content: String
   }
-  type NewCommentResponse {
-      success: Boolean!
-      message: String
-      comments: [Comment]
-  }  
+
+   type NewsUpdateResponse {
+    success: Boolean!
+    message: String
+    news: [News]
+  }
   
+  type NewsResponse {
+        status: String
+        totalResults: Int
+        articles: [News]
+  }
   type Query {
-      getPosts: [Post]
-      getPost(id: ID!): Post
-      me: User
+    news:  NewsResponse
+    newsByMention(mention: String!):  [News]
+    me: User
+    isFavorite: Boolean
+  }
+  type Mutation {
+    likeNews(title: String!): NewsUpdateResponse!
+    login(email: String): String # login token
   }
   
-  type Mutation {
-      newPost(text: String!): NewPostResponse!
-      newComment(text: String!): NewCommentResponse!
-      login(email: String): String # login token
-}
 `;
 
 module.exports = typeDefs;
