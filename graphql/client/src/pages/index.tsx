@@ -1,0 +1,5 @@
+export { default as AuthorsPage } from './AuthorListPage'
+export { default as AuthPage } from './AuthPage'
+export { default as BooksPage } from './BookListPage'
+export { default as AuthorPage } from './AuthorPage'
+export { default as BookPage } from './BookPage'

@@ -1,4 +1,4 @@
-const {Sequelize} = require('sequelize');
+const {Sequelize, DataTypes } = require('sequelize');
 
 module.exports.paginateResults = ({
                                       after: cursor,
@@ -35,19 +35,24 @@ module.exports.createStore = () => {
     });
 
     const users = db.define('user', {
-        createdAt: Sequelize.DATE,
-        updatedAt: Sequelize.DATE,
-        email: Sequelize.STRING,
-        profileImage: Sequelize.STRING,
-        token: Sequelize.STRING,
+        createdAt: DataTypes.DATE,
+        updatedAt: DataTypes.DATE,
+        email: DataTypes.STRING,
+        profileImage: DataTypes.STRING,
+        token: DataTypes.STRING,
     });
 
-    const news = db.define('news', {
-        createdAt: Sequelize.DATE,
-        updatedAt: Sequelize.DATE,
-        title: Sequelize.STRING,
-        userId: Sequelize.INTEGER,
+    const books = db.define('books', {
+        description: DataTypes.STRING,
+        pubDate: DataTypes.DATE,
+        title:  DataTypes.STRING,
+    });
+    const authors = db.define('books', {
+        bio: DataTypes.STRING,
+        firstname:DataTypes.STRING,
+        lastname: DataTypes.STRING,
+        middlename: DataTypes.STRING,
     });
 
-    return { db, users, news };
+    return { db, users, books, authors };
 };

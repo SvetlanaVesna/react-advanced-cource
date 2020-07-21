@@ -1,8 +1,6 @@
-const { gql } = require('apollo-server');
-
-const typeDefs = gql`
     scalar Date
-    scalar Int
+scalar Int
+
   type User {
       id: ID!
       email: String!
@@ -30,22 +28,15 @@ const typeDefs = gql`
     id: ID!
     text: String!
   }
- type BookFilter {
-    id: ID
- }
- type CommentFilter {
-    book: BookFilter
- }
+ 
   type Query {
     allAuthors: [Author!]!
     allBooks: [Book!]!
     getAuthor(id: ID!): Author
     getBook(id: ID!): Book
+allComments(filter: Book, first: Int!, skip: Int!):  [Comment]
     me: User
   }
   type Mutation {
     login(email: String): String # login token
   }
-`;
-
-module.exports = typeDefs;
