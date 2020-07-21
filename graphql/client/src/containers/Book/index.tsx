@@ -5,7 +5,6 @@ import Paper from '@material-ui/core/Paper'
 import Button from '@material-ui/core/Button'
 import { Link } from 'react-router-dom'
 
-import CommentsContainer from '../Comments'
 
 import { BookCardComponent } from '../../components'
 
@@ -56,12 +55,6 @@ class BookComponent extends Component {
           {comments.length !== 0 && (
             <Paper className={classes.comments}>
               <div className={classes.title}>Comments</div>
-              <CommentsContainer
-                classes={classes}
-                bookId={id}
-                commentPerPage={commentPerPage}
-                pageNumber={pageNumber}
-              />
               <div className={classes.pagination}>
                 <Button onClick={() => this.setPreviousPage()}>Prew</Button>
                 <Button onClick={() => this.setNextPage()}>Next</Button>
