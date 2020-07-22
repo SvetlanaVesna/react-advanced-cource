@@ -2,7 +2,6 @@ const { gql } = require('apollo-server');
 
 const typeDefs = gql`
     scalar Date
-    scalar Int
   type User {
       id: ID!
       email: String!
@@ -25,11 +24,7 @@ const typeDefs = gql`
     pubDate: Date
     title: String!
   }
-  type Comment {
-    book: Book
-    id: ID!
-    text: String!
-  }
+
  type BookFilter {
     id: ID
  }

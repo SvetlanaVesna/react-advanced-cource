@@ -1,7 +1,7 @@
 import gql from 'graphql-tag'
 
 export const GET_ALL_BOOKS = gql`
-  query getAllBooks{
+  query getAllBooks {
     allBooks {
       id
       title
