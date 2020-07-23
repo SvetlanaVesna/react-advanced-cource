@@ -1,11 +1,11 @@
-const { gql } = require('apollo-server');
+const { gql } = require("apollo-server");
 
 const typeDefs = gql`
-    scalar Date
+  scalar Date
   type User {
-      id: ID!
-      email: String!
-      login: String!
+    id: ID!
+    email: String!
+    login: String!
   }
   type Author {
     bio: String!
@@ -15,22 +15,25 @@ const typeDefs = gql`
     lastname: String!
     middlename: String!
   }
-  
+
   type Book {
     authors: [Author!]
-    comments: [Comment!]
     description: String!
     id: ID!
     pubDate: Date
     title: String!
   }
 
- type BookFilter {
+  type BookFilter {
     id: ID
- }
- type CommentFilter {
-    book: BookFilter
- }
+  }
+
+  input NewAuthorInput {
+    bio: String!
+    firstname: String!
+    lastname: String!
+    middlename: String!
+  }
   type Query {
     allAuthors: [Author!]!
     allBooks: [Book!]!
@@ -40,6 +43,7 @@ const typeDefs = gql`
   }
   type Mutation {
     login(email: String): String # login token
+    addAuthor(author: NewAuthorInput): Author!
   }
 `;
 

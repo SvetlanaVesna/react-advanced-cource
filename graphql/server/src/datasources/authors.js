@@ -1,7 +1,6 @@
 const { DataSource } = require("apollo-datasource");
-const uuidv4 = require("uuid/v4");
 
-class BooksAPI extends DataSource {
+class AuthorsAPI extends DataSource {
   constructor({ store }) {
     super();
     this.store = store;
@@ -17,9 +16,13 @@ class BooksAPI extends DataSource {
     this.context = config.context;
   }
 
-  async getAllBooks() {
-    return this.store.books().findAll();
+  async addAuthor(author) {
+    await this.store.authors.sync({ force: true });
+    console.log("The table for the Author model was just (re)created!");
+    const newAuthor = this.store.authors.create(author);
+    if (newAuthor) return newAuthor;
+    return null;
   }
 }
 
-module.exports = BooksAPI;
+module.exports = AuthorsAPI;
