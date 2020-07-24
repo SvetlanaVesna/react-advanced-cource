@@ -16,12 +16,26 @@ class AuthorsAPI extends DataSource {
     this.context = config.context;
   }
 
+  async allAuthors() {
+    return this.store.authors.findAll({ include: ["books"] });
+  }
+
   async addAuthor(author) {
-    await this.store.authors.sync({ force: true });
-    console.log("The table for the Author model was just (re)created!");
     const newAuthor = this.store.authors.create(author);
     if (newAuthor) return newAuthor;
     return null;
+  }
+
+  async addBookToAuthor(bookId, authorId) {
+    const author = await this.store.authors.findOne({
+      where: { id: authorId },
+      include: ["books"]
+    });
+    const book = await this.store.books.findOne({
+      where: { id: bookId }
+    });
+    await author.addBooks([book]);
+    return await author.save();
   }
 }
 

@@ -53,6 +53,8 @@ module.exports.createStore = () => {
     lastname: DataTypes.STRING,
     middlename: DataTypes.STRING
   });
+  authors.hasMany(books, { as: "books" });
+  books.belongsTo(authors);
 
   return { db, users, books, authors };
 };

@@ -18,7 +18,13 @@ class BooksAPI extends DataSource {
   }
 
   async getAllBooks() {
-    return this.store.books().findAll();
+    return this.store.books.findAll({ include: this.store.authors });
+  }
+
+  async addBook(book) {
+    const newBook = this.store.books.create(book);
+    if (newBook) return newBook;
+    return null;
   }
 }
 

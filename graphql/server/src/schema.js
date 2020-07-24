@@ -8,24 +8,20 @@ const typeDefs = gql`
     login: String!
   }
   type Author {
-    bio: String!
+    bio: String
     books: [Book!]
-    firstname: String!
+    firstname: String
     id: ID!
-    lastname: String!
-    middlename: String!
+    lastname: String
+    middlename: String
   }
 
   type Book {
-    authors: [Author!]
+    author: Author!
     description: String!
     id: ID!
     pubDate: Date
     title: String!
-  }
-
-  type BookFilter {
-    id: ID
   }
 
   input NewAuthorInput {
@@ -34,6 +30,13 @@ const typeDefs = gql`
     lastname: String!
     middlename: String!
   }
+
+  input NewBookInput {
+    description: String!
+    pubDate: Date
+    title: String!
+  }
+
   type Query {
     allAuthors: [Author!]!
     allBooks: [Book!]!
@@ -44,6 +47,8 @@ const typeDefs = gql`
   type Mutation {
     login(email: String): String # login token
     addAuthor(author: NewAuthorInput): Author!
+    addBook(book: NewBookInput): Book!
+    addBookToAuthor(bookId: ID!, authorId: ID!): Author!
   }
 `;
 
