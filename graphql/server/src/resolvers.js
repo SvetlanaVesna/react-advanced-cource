@@ -6,6 +6,12 @@ module.exports = {
     allAuthors: async (_, {}, { dataSources }) => {
       return await dataSources.authorsAPI.allAuthors();
     },
+    getAuthor: async (_, { id }, { dataSources }) => {
+      return await dataSources.authorsAPI.getAuthor(id);
+    },
+    getBook: async (_, { id }, { dataSources }) => {
+      return await dataSources.booksAPI.getBook(id);
+    },
     me: async (_, __, { dataSources }) => dataSources.userAPI.findOrCreateUser()
   },
   Mutation: {
@@ -28,6 +34,10 @@ module.exports = {
       );
       if (author) return author;
       return null;
+    },
+    addComment: async (_, params, { dataSources }) => {
+      const newBook = await dataSources.booksAPI.addComment(params);
+      if (newBook) return newBook;
     }
   }
 };

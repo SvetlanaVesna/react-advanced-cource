@@ -20,6 +20,15 @@ class AuthorsAPI extends DataSource {
     return this.store.authors.findAll({ include: ["books"] });
   }
 
+  async getAuthor(id) {
+    const author = await this.store.authors.findOne({
+      where: { id },
+      include: ["books"]
+    });
+    if (author) return author;
+    return null;
+  }
+
   async addAuthor(author) {
     const newAuthor = this.store.authors.create(author);
     if (newAuthor) return newAuthor;

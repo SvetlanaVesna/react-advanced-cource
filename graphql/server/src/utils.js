@@ -53,8 +53,13 @@ module.exports.createStore = () => {
     lastname: DataTypes.STRING,
     middlename: DataTypes.STRING
   });
+  const comments = db.define("comments", {
+    author: DataTypes.STRING,
+    pubDate: DataTypes.DATE,
+    text: DataTypes.STRING
+  });
   authors.hasMany(books, { as: "books" });
   books.belongsTo(authors);
-
-  return { db, users, books, authors };
+  books.hasMany(comments, { as: "comments" });
+  return { db, users, books, authors, comments };
 };

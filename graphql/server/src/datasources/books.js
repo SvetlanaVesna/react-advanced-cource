@@ -21,10 +21,32 @@ class BooksAPI extends DataSource {
     return this.store.books.findAll({ include: this.store.authors });
   }
 
+  async getAuthor(id) {
+    const author = await this.store.books.findOne({
+      where: { id },
+      include: ["books"]
+    });
+    if (author) return author;
+    return null;
+  }
+
   async addBook(book) {
     const newBook = this.store.books.create(book);
     if (newBook) return newBook;
     return null;
+  }
+  async addComment(params) {
+    const book = await this.store.books.findOne({
+      where: { id: params.id }
+    });
+    const newComment = this.store.comments.create({
+      author: params.author,
+      pubDate: params.pubDate,
+      text: params.text
+    });
+
+    await book.addComments([newComment]);
+    return await book.save();
   }
 }
 

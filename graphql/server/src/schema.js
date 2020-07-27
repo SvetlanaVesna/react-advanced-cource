@@ -22,6 +22,15 @@ const typeDefs = gql`
     id: ID!
     pubDate: Date
     title: String!
+    comments: [Comment]
+  }
+
+  type Comment {
+    author: String!
+    id: ID!
+    book: Book!
+    pubDate: Date
+    text: String!
   }
 
   input NewAuthorInput {
@@ -37,6 +46,12 @@ const typeDefs = gql`
     title: String!
   }
 
+  input NewComment {
+    bookId: ID!
+    author: String!
+    text: String!
+  }
+
   type Query {
     allAuthors: [Author!]!
     allBooks: [Book!]!
@@ -49,6 +64,7 @@ const typeDefs = gql`
     addAuthor(author: NewAuthorInput): Author!
     addBook(book: NewBookInput): Book!
     addBookToAuthor(bookId: ID!, authorId: ID!): Author!
+    addComment(comment: NewComment!): Book!
   }
 `;
 
