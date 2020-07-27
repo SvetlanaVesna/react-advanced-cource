@@ -1,4 +1,4 @@
-const styles = theme => ({
+const styles = {
   root: {
     padding: 30,
   },
@@ -13,7 +13,7 @@ const styles = theme => ({
   image: {
     width: '100%',
     height: '100%',
-    objectFit: 'cover',
+    'object-fit': 'cover',
   },
   data: {
     marginTop: 10,
@@ -47,6 +47,6 @@ const styles = theme => ({
     display: 'flex',
     justifyContent: 'space-between',
   },
-})
+}
 
 export default styles

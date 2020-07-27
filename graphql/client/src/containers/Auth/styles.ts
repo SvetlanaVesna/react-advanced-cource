@@ -1,4 +1,4 @@
-const styles = theme => ({
+const styles = {
   root: {
     width: '100%',
     height: '100vh',
@@ -11,11 +11,10 @@ const styles = theme => ({
     background: '#fff',
     borderRadius: 4,
     display: 'flex',
-    flexDirection: 'column',
+    'flex-direction': 'column',
     alignItems: 'center',
     width: 300,
     padding: '20px 0',
-    boxShadow: theme.shadows[21],
   },
   icon: {
     width: 100,
@@ -23,14 +22,9 @@ const styles = theme => ({
     borderRadius: '50%',
     overflow: 'hidden',
   },
-  logo: {
-    width: '100%',
-    height: '100%',
-    objectFit: 'cover',
-  },
   button: {
     marginTop: 20,
   },
-})
+}
 
 export default styles

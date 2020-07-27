@@ -11,7 +11,7 @@ import routes from './route'
 
 const cache = new InMemoryCache()
 const link = new HttpLink({
-  uri: 'https://api.graph.cool/simple/v1/cjp0qwlmefpf40186p5f2pi4s',
+  uri: 'http://localhost:4000/',
 })
 
 const client: ApolloClient<NormalizedCacheObject> = new ApolloClient({

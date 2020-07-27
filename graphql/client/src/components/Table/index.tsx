@@ -12,11 +12,11 @@ import TableFooter from '@material-ui/core/TableFooter'
 import TablePagination from '@material-ui/core/TablePagination'
 import TablePaginationActionsWrapped from './TablePaginationActions'
 
-const styles = theme => ({
+const styles = (theme: any) => ({
   root: {
     width: '100%',
     marginTop: theme.spacing.unit * 3,
-    overflowX: 'auto',
+    'overflow-x': 'auto',
   },
   table: {
     minWidth: 700,

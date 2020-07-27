@@ -1,79 +1,54 @@
-import React, { Component } from 'react'
-import { Mutation } from 'react-apollo'
-
+import React, { FC, useState } from 'react'
 import { TextField, Button } from '@material-ui/core'
+import { withStyles } from '@material-ui/core/styles'
+import { useMutation } from '@apollo/client'
 
-import withStyles from '@material-ui/core/styles/withStyles'
+import { BasicStyledComponent } from 'types'
 
 import { LOGIN } from './graphql'
-
 import styles from './styles'
-import * as logoIcon from '../../assets/images/x5.png'
 
-class AuthComponent extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      email: '',
-      password: '',
+const AuthComponent: FC<BasicStyledComponent> = ({ classes }) => {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [login, { data }] = useMutation(LOGIN)
+
+  const onLogin = async () => {
+    login({ variables: { email, password } })
+    if (data) {
+      const {
+        signinUser: { token },
+      } = data
+      localStorage.setItem('token', token)
+      window.location.href = '/'
     }
   }
-
-  async onClickLogin() {
-    const { email, password } = this.state
-    const { login } = this.props
-    login({ variables: { email, password } }).then(
-      ({
-        data: {
-          signinUser: { token },
-        },
-      }) => {
-        localStorage.setItem('token', token)
-        window.location.href = '/'
-      },
-    )
-  }
-
-  handleChange = (e, state) => this.setState({ [state]: e.target.value.trim() })
-
-  render() {
-    const {
-      classes: { root, container, icon, logo, button },
-    } = this.props
-    return (
-      <div className={root}>
-        <div className={container}>
-          <div className={icon}>
-            <img className={logo} alt="/" src={logoIcon} />
-          </div>
-          <TextField
-            id="name"
-            label="Name"
-            onChange={e => this.handleChange(e, 'email')}
-          />
-          <TextField
-            id="password"
-            label="Password"
-            type="password"
-            onChange={e => this.handleChange(e, 'password')}
-          />
-          <Button
-            variant="outlined"
-            color="secondary"
-            className={button}
-            onClick={() => this.onClickLogin()}
-            onKeyUp={() => this.onClickLogin()}
-          >
-            Login
-          </Button>
-        </div>
+  return (
+    <div className={classes.root}>
+      <div className={classes.container}>
+        <TextField
+          id="name"
+          label="Name"
+          onChange={e => setEmail(e.target.value.trim())}
+        />
+        <TextField
+          id="password"
+          label="Password"
+          type="password"
+          onChange={e => setPassword(e.target.value.trim())}
+        />
+        <Button
+          variant="outlined"
+          color="secondary"
+          className={classes.button}
+          onClick={onLogin}
+          onKeyUp={onLogin}
+        >
+          Login
+        </Button>
       </div>
-    )
-  }
+    </div>
+  )
 }
-const Auth = ({ classes }) => (
-  <Mutation mutation={LOGIN}>
-    {login => <AuthComponent login={login} classes={classes} />}
-  </Mutation>
-)
-export default withStyles(styles)(Auth)
+
+export default withStyles(styles)(AuthComponent)
