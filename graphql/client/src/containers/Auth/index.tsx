@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react'
+import React, { FC, useCallback, useState } from 'react'
 import { TextField, Button } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
 import { useMutation } from '@apollo/client'
@@ -7,22 +7,21 @@ import { BasicStyledComponent } from 'types'
 
 import { LOGIN } from './graphql'
 import styles from './styles'
+import ErrorComponent from '../../components/Error'
 
 const AuthComponent: FC<BasicStyledComponent> = ({ classes }) => {
   const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [login, { data }] = useMutation(LOGIN)
+  const [login, { data, error }] = useMutation(LOGIN)
 
-  const onLogin = async () => {
-    login({ variables: { email, password } })
+  const onLogin = useCallback(async () => {
+    await login({ variables: { email } })
     if (data) {
-      const {
-        signinUser: { token },
-      } = data
+      const { login: token } = data
       localStorage.setItem('token', token)
       window.location.href = '/'
     }
-  }
+  }, [email, data, login])
+
   return (
     <div className={classes.root}>
       <div className={classes.container}>
@@ -30,12 +29,6 @@ const AuthComponent: FC<BasicStyledComponent> = ({ classes }) => {
           id="name"
           label="Name"
           onChange={e => setEmail(e.target.value.trim())}
-        />
-        <TextField
-          id="password"
-          label="Password"
-          type="password"
-          onChange={e => setPassword(e.target.value.trim())}
         />
         <Button
           variant="outlined"
@@ -46,6 +39,7 @@ const AuthComponent: FC<BasicStyledComponent> = ({ classes }) => {
         >
           Login
         </Button>
+        {error && <ErrorComponent error={error} />}
       </div>
     </div>
   )

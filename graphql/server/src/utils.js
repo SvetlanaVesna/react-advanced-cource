@@ -1,4 +1,5 @@
 const { Sequelize, DataTypes } = require("sequelize");
+const path = require("path");
 
 module.exports.paginateResults = ({
   after: cursor,
@@ -34,14 +35,12 @@ module.exports.createStore = () => {
     storage: "./store.sqlite"
   });
 
-  const users = db.define("user", {
+  const users = db.define("users", {
     createdAt: DataTypes.DATE,
     updatedAt: DataTypes.DATE,
     email: DataTypes.STRING,
-    profileImage: DataTypes.STRING,
     token: DataTypes.STRING
   });
-
   const books = db.define("books", {
     description: DataTypes.STRING,
     pubDate: DataTypes.DATE,

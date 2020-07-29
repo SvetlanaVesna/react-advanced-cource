@@ -24,7 +24,7 @@ class BooksAPI extends DataSource {
   async getBook(id) {
     return this.store.books.findOne({
       where: { id }
-    })
+    });
   }
 
   async addBook(book) {
