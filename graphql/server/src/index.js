@@ -31,9 +31,6 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   context,
-  engine: {
-    reportSchema: true
-  },
   dataSources: () => ({
     booksAPI: new BooksAPI({ store }),
     authorsAPI: new AuthorsAPI({ store }),

@@ -1,42 +1,65 @@
-    scalar Date
-scalar Int
-
+  scalar Date
   type User {
-      id: ID!
-      email: String!
-      login: String!
+    id: ID!
+    email: String!
+    login: String!
   }
   type Author {
-    bio: String!
+    bio: String
     books: [Book!]
-    firstname: String!
+    firstname: String
     id: ID!
-    lastname: String!
-    middlename: String!
+    lastname: String
+    middlename: String
   }
-  
+
   type Book {
-    authors: [Author!]
-    comments: [Comment!]
+    author: Author!
     description: String!
     id: ID!
     pubDate: Date
     title: String!
+    comments: [Comment]
   }
+
   type Comment {
-    book: Book
+    author: String!
     id: ID!
+    book: Book!
+    pubDate: Date
     text: String!
   }
- 
+
+  input NewAuthorInput {
+    bio: String!
+    firstname: String!
+    lastname: String!
+    middlename: String!
+  }
+
+  input NewBookInput {
+    description: String!
+    pubDate: Date
+    title: String!
+  }
+
+  input NewComment {
+    bookId: ID!
+    author: String!
+    text: String!
+  }
+
   type Query {
     allAuthors: [Author!]!
     allBooks: [Book!]!
     getAuthor(id: ID!): Author
     getBook(id: ID!): Book
-allComments(filter: Book, first: Int!, skip: Int!):  [Comment]
     me: User
   }
   type Mutation {
     login(email: String): String # login token
+    addAuthor(author: NewAuthorInput): Author!
+    addBook(book: NewBookInput): Book!
+    addBookToAuthor(bookId: ID!, authorId: ID!): Author!
+    addComment(comment: NewComment!): Book!
   }

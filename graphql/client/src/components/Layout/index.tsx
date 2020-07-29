@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import {
   Drawer,
@@ -15,6 +15,7 @@ import {
 import { Link } from 'react-router-dom'
 
 import { styles } from './styles'
+import { BasicStyledComponent } from '../../types'
 
 const contentDriver = [
   {
@@ -27,7 +28,7 @@ const contentDriver = [
   },
 ]
 
-const AppContainer = ({ children, classes }) => (
+const AppContainer: FC<BasicStyledComponent> = ({ children, classes }) => (
   <div className={classes.root}>
     <CssBaseline />
     <AppBar position="fixed" className={classes.appBar}>

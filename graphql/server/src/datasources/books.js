@@ -21,13 +21,10 @@ class BooksAPI extends DataSource {
     return this.store.books.findAll({ include: this.store.authors });
   }
 
-  async getAuthor(id) {
-    const author = await this.store.books.findOne({
-      where: { id },
-      include: ["books"]
-    });
-    if (author) return author;
-    return null;
+  async getBook(id) {
+    return this.store.books.findOne({
+      where: { id }
+    })
   }
 
   async addBook(book) {

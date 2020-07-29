@@ -1,7 +1,7 @@
-import React from 'react'
-import { AppContainer, BookContainer } from '../../containers'
+import React, { FC } from 'react'
+import { AppContainer, BookContainer } from 'containers'
 
-const BookPage = ({ bookId }) => (
+const BookPage: FC<{ bookId: number }> = ({ bookId }) => (
   <AppContainer>
     <BookContainer bookId={bookId} />
   </AppContainer>

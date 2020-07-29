@@ -1,6 +1,6 @@
 import React from 'react'
 import { useQuery } from '@apollo/client'
-
+import { isNil } from 'lodash'
 import { TableComponent } from '../../components'
 
 import { GET_AUTHOR_LIST } from './graphql'
@@ -12,15 +12,15 @@ const AuthorsContainer = () => {
   const { data, loading, error } = useQuery<getAllAuthors>(GET_AUTHOR_LIST)
   if (loading) return <p>Loading...</p>
   if (error) return <p>Error :(</p>
-  const content =
-    data?.allAuthors &&
-    data?.allAuthors.map(({ firstname, lastname, books, id }) => ({
-      id,
-      firstname,
-      lastname,
-      count: books?.length,
-      link: `/authors/${id}`,
-    }))
+  const content = !isNil(data)
+    ? data.allAuthors.map(({ firstname, lastname, books, id }) => ({
+        id,
+        firstname,
+        lastname,
+        count: books?.length,
+        link: `/authors/${id}`,
+      }))
+    : []
 
   return (
     <TableComponent headerContent={headerContent} title="Authors list" rows={content} />

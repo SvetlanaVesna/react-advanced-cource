@@ -6,6 +6,7 @@ import Grid from '@material-ui/core/Grid/Grid'
 import Typography from '@material-ui/core/Typography/Typography'
 import { useQuery } from '@apollo/client'
 import moment from 'moment'
+import { isNil } from 'lodash'
 
 import { GET_AUTHOR_BY_ID } from './graphql'
 
@@ -37,7 +38,7 @@ const Author: FC<{ authorId: number } & BasicStyledComponent> = ({
     variables: { id: authorId },
   })
   if (loading) return <p>Loading...</p>
-  if (error) return `Error!: ${error}`
+  if (error) return <p>Error!: ${error}</p>
   const author = data?.getAuthor
   return (
     <div className={classes.root}>
@@ -61,14 +62,17 @@ const Author: FC<{ authorId: number } & BasicStyledComponent> = ({
         </Grid>
       </Paper>
       <Paper className={classes.books}>
-        <TableComponent
-          headerContent={['Publication Date', 'Title']}
-          title="Author books list"
-          rows={author?.books?.map(({ pubDate, title }) => ({
-            pubDate: moment(pubDate).format('MM.DD.YYYY'),
-            title,
-          }))}
-        />
+        {!isNil(author) && !isNil(author.books) && (
+          <TableComponent
+            headerContent={['Publication Date', 'Title']}
+            title="Author books list"
+            rows={author.books.map(({ pubDate, title, id }) => ({
+              pubDate: moment(pubDate).format('MM.DD.YYYY'),
+              title,
+              id,
+            }))}
+          />
+        )}
       </Paper>
     </div>
   )
