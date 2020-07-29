@@ -35,7 +35,7 @@ const AppContainer: FC<BasicStyledComponent> = ({ children, classes }) => (
       <Toolbar>
         <Typography variant="h6" color="inherit" className={classes.grow}>
           <Link to="/" className={classes.link}>
-            App X5
+            React Advanced | GraphQL
           </Link>
         </Typography>
         <Button
