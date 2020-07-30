@@ -1,4 +1,5 @@
 import React, { FC } from 'react'
+import { remove } from 'js-cookie'
 import { withStyles } from '@material-ui/core/styles'
 import {
   Drawer,
@@ -41,7 +42,7 @@ const AppContainer: FC<BasicStyledComponent> = ({ children, classes }) => (
         <Button
           color="inherit"
           onClick={() => {
-            localStorage.removeItem('token')
+            remove('token')
             window.location.reload()
           }}
         >

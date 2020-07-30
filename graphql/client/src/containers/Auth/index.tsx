@@ -1,7 +1,8 @@
-import React, { FC, useCallback, useState } from 'react'
+import React, { FC, useCallback, useEffect, useState } from 'react'
 import { TextField, Button } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
 import { useMutation } from '@apollo/client'
+import { set } from 'js-cookie'
 
 import { BasicStyledComponent } from 'types'
 
@@ -15,12 +16,15 @@ const AuthComponent: FC<BasicStyledComponent> = ({ classes }) => {
 
   const onLogin = useCallback(async () => {
     await login({ variables: { email } })
+  }, [email, login])
+
+  useEffect(() => {
     if (data) {
       const { login: token } = data
-      localStorage.setItem('token', token)
+      set('token', token)
       window.location.href = '/'
     }
-  }, [email, data, login])
+  }, [data])
 
   return (
     <div className={classes.root}>

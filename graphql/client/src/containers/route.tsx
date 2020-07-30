@@ -1,5 +1,6 @@
 import React from 'react'
 import { Route, Switch, Redirect } from 'react-router-dom'
+import { get } from 'js-cookie'
 
 import { AuthPage, AuthorsPage, BooksPage, AuthorPage, BookPage } from '../pages'
 import { RouteProps } from 'react-router'
@@ -14,7 +15,7 @@ function PrivateRoute({
     <Route
       {...rest}
       render={props =>
-        localStorage.getItem('token') ? (
+        get('token') ? (
           <Component {...props} />
         ) : (
           <Redirect
