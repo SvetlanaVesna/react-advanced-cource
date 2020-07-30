@@ -1,4 +1,5 @@
 const { Sequelize, DataTypes } = require("sequelize");
+const path = require("path");
 
 module.exports.paginateResults = ({
   after: cursor,
