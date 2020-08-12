@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import {
   ApolloClient,
@@ -25,14 +25,12 @@ const client: ApolloClient<NormalizedCacheObject> = new ApolloClient({
   },
 })
 
-class App extends Component {
-  render() {
-    return (
-      <ApolloProvider client={client}>
-        <BrowserRouter>{routes}</BrowserRouter>
-      </ApolloProvider>
-    )
-  }
+const App = () => {
+  return (
+    <ApolloProvider client={client}>
+      <BrowserRouter>{routes}</BrowserRouter>
+    </ApolloProvider>
+  )
 }
 
 export default App
