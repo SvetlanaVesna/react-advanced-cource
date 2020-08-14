@@ -35,15 +35,15 @@ export const AUTHOR_FRAGMENT = gql`
     lastname
   }
   # How to use Fragment:
-  {
+  query remarkQuery {
     Remark: getAuthor(id: 2) {
       ...MainAuthorInfo
     }
   }
 `
 
-export const getAUTHOR_BY_DEFAULT = gql`
-  query getAuthor($id: ID = 2) {
+export const GET_AUTHOR_BY_DEFAULT = gql`
+  query getAuthorByDefault($id: ID = 2) {
     getAuthor(id: $id) {
       bio
       firstname
@@ -52,6 +52,18 @@ export const getAUTHOR_BY_DEFAULT = gql`
         id
         title
       }
+    }
+  }
+`
+
+export const ADD_AUTHOR_MUTATION = gql`
+  mutation addNewAuthor($author: NewAuthorInput!) {
+    addAuthor(author: $author) {
+      id
+      lastname
+      firstname
+      middlename
+      bio
     }
   }
 `

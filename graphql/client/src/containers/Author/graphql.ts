@@ -19,7 +19,7 @@ export const GET_AUTHOR_BY_ID = gql`
 `
 
 export const ADD_AUTHOR_MUTATION = gql`
-  mutation addAuthor {
+  mutation addDefaultAuthor {
     addAuthor(
       author: {
         lastname: "Tolstoy"

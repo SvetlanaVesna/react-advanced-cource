@@ -27,15 +27,15 @@
     "strict": false
   },
   "exclude": [
-    "e2e",
     "node_modules",
     "build",
-    "acceptance-tests",
     "webpack",
     "jest",
     "coverage",
-    "styleguide",
-    "cypress"
+    "__generated__",
+    "src/containers/**/__generated__/*.ts"
   ],
-  "include": ["src/**/*"]
+  "include": [
+    "src/**/*.ts"
+  ]
 }

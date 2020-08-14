@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react'
+import React, { ReactNode, useMemo, useState } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import Table from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
@@ -29,7 +29,7 @@ const TableComponent = <T extends { id: number | string }>(
   props: {
     rows: T[]
     headerContent: any[]
-    title: string
+    title: string | ReactNode
   } & BasicStyledComponent,
 ) => {
   const rows = useMemo(() => props.rows || defaultRows, [props.rows])
