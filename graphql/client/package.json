@@ -24,14 +24,15 @@
     "subscriptions-transport-ws": "^0.9.17"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "yarn codegen & yarn start:local",
+    "start:local": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
     "lint": "eslint \\\"src/**/*.{js,jsx}\\\"",
     "lint:fix": "eslint --fix \\\"src/**/*.{js,jsx}\\\"",
-    "codegen": "apollo client:codegen --target typescript --watch"
+    "codegen": "apollo client:codegen --target typescript"
   },
   "eslintConfig": {
     "extends": "react-app"
