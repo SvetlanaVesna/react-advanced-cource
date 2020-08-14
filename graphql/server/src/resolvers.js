@@ -35,6 +35,9 @@ module.exports = {
       if (author) return author;
       return null;
     },
+    deleteAuthor: async (_, { authorId }, { dataSources }) => {
+      return await dataSources.authorsAPI.deleteAuthor(authorId)
+    },
     addComment: async (_, params, { dataSources }) => {
       const newBook = await dataSources.booksAPI.addComment(params);
       if (newBook) return newBook;

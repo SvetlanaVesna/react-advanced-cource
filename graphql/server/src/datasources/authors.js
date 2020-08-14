@@ -46,6 +46,20 @@ class AuthorsAPI extends DataSource {
     await author.addBooks([book]);
     return await author.save();
   }
+
+  async deleteAuthor(authorId) {
+    const author = await this.store.authors.findOne({
+      where: { id: authorId },
+      include: ["books"]
+    });
+    if (author) {
+      await this.store.authors.destroy({
+        where: { id: authorId }
+      });
+      return "ok";
+    }
+    return null;
+  }
 }
 
 module.exports = AuthorsAPI;
