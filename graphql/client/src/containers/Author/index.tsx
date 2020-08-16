@@ -8,13 +8,13 @@ import { useQuery } from '@apollo/client'
 import moment from 'moment'
 import { isNil } from 'lodash'
 
+import { TableComponent } from 'components'
+import ErrorComponent from 'components/Error'
+
 import { GET_AUTHOR_BY_ID } from './graphql'
 
 import { BasicStyledComponent } from 'types'
 import { getAuthor } from './__generated__/getAuthor'
-
-import { TableComponent } from '../../components'
-import ErrorComponent from '../../components/Error'
 
 const styles = (theme: any) => ({
   root: {
