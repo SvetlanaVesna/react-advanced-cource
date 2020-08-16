@@ -38,7 +38,6 @@ const AddAuthorForm: FC<{
   const [addAuthor, { data, error, loading }] = useMutation(ADD_AUTHOR_MUTATION)
 
   const addAuthorCallback = useCallback(() => {
-    console.log(firstname, lastname, middlename, bio)
     addAuthor({
       variables: {
         author: {

@@ -1,9 +1,9 @@
-// @ts-nocheck
 import React from 'react'
 import { useQuery } from '@apollo/client'
 import { Button } from '@material-ui/core'
 import { isNil } from 'lodash'
-import { TableComponent } from '../../components'
+import { TableComponent } from 'components'
+import ErrorComponent from 'components/Error'
 
 import { GET_AUTHOR_LIST } from './graphql'
 import { getAllAuthors } from './__generated__/getAllAuthors'
@@ -23,7 +23,7 @@ const AuthorsContainer = () => {
     setOpen(false)
   }
   if (loading) return <p>Loading...</p>
-  if (error) return <p>Error :(</p>
+  if (error) return <ErrorComponent error={error} />
   const content = !isNil(data)
     ? data.allAuthors.map(({ firstname, lastname, books, id }) => ({
         id,

@@ -14,6 +14,7 @@ import { BasicStyledComponent } from 'types'
 import { getAuthor } from './__generated__/getAuthor'
 
 import { TableComponent } from '../../components'
+import ErrorComponent from '../../components/Error'
 
 const styles = (theme: any) => ({
   root: {
@@ -38,7 +39,7 @@ const Author: FC<{ authorId: number } & BasicStyledComponent> = ({
     variables: { id: authorId },
   })
   if (loading) return <p>Loading...</p>
-  if (error) return <p>Error!: ${error}</p>
+  if (error) return <ErrorComponent error={error} />
   const author = data?.getAuthor
   return (
     <div className={classes.root}>
