@@ -7,10 +7,7 @@ export const GET_BOOK_BY_ID = gql`
       description
       title
       pubDate
-      comments {
-        id
-        text
-      }
+      isInCart @client
       author {
         id
         lastname
