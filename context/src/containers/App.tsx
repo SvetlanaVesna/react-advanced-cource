@@ -3,6 +3,9 @@ import SayHelloProvider, { SayHelloContext } from './SayHelloProvider'
 import TextField from '@material-ui/core/TextField'
 import { makeStyles } from '@material-ui/core/styles'
 import { Typography } from '@material-ui/core'
+
+import ModalPortalComponent from './Portals'
+
 const useStyles = makeStyles(theme => ({
   root: {
     '& .MuiTextField-root': {
@@ -19,10 +22,10 @@ const SayHelloComponent = () => {
   const classes = useStyles()
   return (
     <div>
+      <Typography variant="h6">{sayHello()}</Typography>
       <div className={classes.root}>
         <TextField value={name} onChange={event => setName(event.target.value)} />
       </div>
-      <Typography variant="h5">{sayHello()}</Typography>
     </div>
   )
 }
@@ -49,6 +52,12 @@ const App = () => {
         <SayHelloComponent />
         <WishGoodDayComponent />
         <CurrentThemeNotice />
+        <div>
+          <Typography variant="h6">Portal Example:</Typography>
+          <ModalPortalComponent>
+            <Typography>This component will render in div with id="modal"</Typography>
+          </ModalPortalComponent>
+        </div>
       </SayHelloProvider>
     </ThemeContext.Provider>
   )
