@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react'
 import SayHelloProvider, { SayHelloContext } from './SayHelloProvider'
 import TextField from '@material-ui/core/TextField'
 import { makeStyles } from '@material-ui/core/styles'
-import { Typography } from '@material-ui/core'
+import { Button, Typography } from '@material-ui/core'
 
 import ModalPortalComponent from './Portals'
 
@@ -62,11 +62,10 @@ const App = () => {
         <CurrentThemeNotice />
         <div>
           <Typography variant="h6">Portal Example:</Typography>
-          <ModalPortalComponent
-            open={open}
-            handleClickOpen={handleClickOpen}
-            handleClose={handleClose}
-          >
+          <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+            Open portal example dialog
+          </Button>
+          <ModalPortalComponent open={open} handleClose={handleClose}>
             <Typography>This component will render in div with id="modal"</Typography>
           </ModalPortalComponent>
         </div>

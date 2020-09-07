@@ -1,18 +1,14 @@
 import React, { FC } from 'react'
-import { Button, Dialog, DialogContent, Typography } from '@material-ui/core'
+import { Dialog, DialogContent, Typography } from '@material-ui/core'
 import { createPortal } from 'react-dom'
 
 const ModalPortalComponent: FC<{
   open: boolean
-  handleClickOpen: () => void
   handleClose: () => void
-}> = ({ open, handleClickOpen, handleClose }) => {
+}> = ({ open, handleClose }) => {
   const modalEl = document.getElementById('modal')
   const modalComponent = (
-    <div>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Open portal example dialog
-      </Button>
+    <div data-testid="new_modal_dialog">
       <Dialog open={open} onClose={handleClose}>
         <DialogContent>This dialog mount into div with id="modal"</DialogContent>
       </Dialog>
