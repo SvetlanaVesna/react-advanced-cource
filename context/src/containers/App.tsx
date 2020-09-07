@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import SayHelloProvider, { SayHelloContext } from './SayHelloProvider'
 import TextField from '@material-ui/core/TextField'
 import { makeStyles } from '@material-ui/core/styles'
@@ -46,6 +46,14 @@ const CurrentThemeNotice = () => {
 }
 
 const App = () => {
+  const [open, setOpen] = useState(false)
+  const handleClickOpen = () => {
+    setOpen(true)
+  }
+  const handleClose = () => {
+    setOpen(false)
+  }
+
   return (
     <ThemeContext.Provider value="dark">
       <SayHelloProvider>
@@ -54,7 +62,11 @@ const App = () => {
         <CurrentThemeNotice />
         <div>
           <Typography variant="h6">Portal Example:</Typography>
-          <ModalPortalComponent>
+          <ModalPortalComponent
+            open={open}
+            handleClickOpen={handleClickOpen}
+            handleClose={handleClose}
+          >
             <Typography>This component will render in div with id="modal"</Typography>
           </ModalPortalComponent>
         </div>

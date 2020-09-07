@@ -1,16 +1,12 @@
-import React, { FC, useState } from 'react'
+import React, { FC } from 'react'
 import { Button, Dialog, DialogContent, Typography } from '@material-ui/core'
 import { createPortal } from 'react-dom'
 
-const ModalPortalComponent: FC = () => {
-  const [open, setOpen] = useState(false)
-  const handleClickOpen = () => {
-    setOpen(true)
-  }
-  const handleClose = () => {
-    setOpen(false)
-  }
-
+const ModalPortalComponent: FC<{
+  open: boolean
+  handleClickOpen: () => void
+  handleClose: () => void
+}> = ({ open, handleClickOpen, handleClose }) => {
   const modalEl = document.getElementById('modal')
   const modalComponent = (
     <div>
