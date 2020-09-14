@@ -4,7 +4,7 @@ import * as actionCreators from '../actionCreators/basic'
 import { toast } from 'react-toastify'
 import { api } from '../utils'
 
-function* getUsers() {
+export function* getUsers() {
   try {
     const users = yield call(api('http://localhost:3000/users?_page=1&limit=20'))
     yield put(actionCreators.getUsersSuccess(users))
