@@ -1,6 +1,6 @@
 import { call, put, takeEvery, takeLatest, throttle } from 'redux-saga/effects'
-import * as actionTypes from '../actionTypes/sagaHelpers'
-import * as actionCreators from '../actionCreators/sagaHelpers'
+import * as actionTypes from '../actionTypes/basic'
+import * as actionCreators from '../actionCreators/basic'
 import { toast } from 'react-toastify'
 import { api } from '../utils'
 

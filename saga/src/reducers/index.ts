@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import sagaHelpersReducer from './sagaHelpers'
+import sagaHelpersReducer from './basic'
 import forkSpawnExampleReducer from './forkSpwanExample'
 import nonBlockingCallsExampleReducer from './nonBlockingCalls'
 import blockingCallsExampleReducer from './blockingCalls'

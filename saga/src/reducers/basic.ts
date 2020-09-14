@@ -1,4 +1,4 @@
-import * as actionTypes from '../actionTypes/sagaHelpers'
+import * as actionTypes from '../actionTypes/basic'
 
 export default (prevState = {}, action: { type: any; users: any; error: any }) => {
   switch (action.type) {

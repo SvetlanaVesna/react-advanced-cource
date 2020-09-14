@@ -1,4 +1,4 @@
-import * as actionTypes from '../actionTypes/sagaHelpers'
+import * as actionTypes from '../actionTypes/basic'
 
 export function getUsers() {
   return { type: actionTypes.GET_USERS }

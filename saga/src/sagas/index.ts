@@ -3,7 +3,7 @@ import { all } from 'redux-saga/effects'
 import { forkSpawnExampleMain } from './forkSpawnExample'
 import { runNonBlockingCallsExample } from './nonBlockingCalls'
 import { runBlockingCallsExample } from './blockingCalls'
-import { getUsersTakeEvery, getUsersTakeLatest, getUsersThrottle } from './sagaHelpers'
+import { getUsersTakeEvery, getUsersTakeLatest, getUsersThrottle } from './basic'
 import { runParallelCallsExample } from './parallel'
 
 export default function* rootSaga() {
