@@ -8,7 +8,7 @@ export default (prevState = {}, action: { type: any; data: any; error: any }) =>
       return Object.assign({}, prevState, { isFetching: false }, { users: action.data })
     case actionTypes.GET_COMMENTS:
       return Object.assign({}, prevState, { isFetching: true })
-    case actionTypes.GET_COMMENTS_SUCCESS:
+    case actionTypes.GET_CITIES_SUCCESS:
       return Object.assign(
         {},
         prevState,

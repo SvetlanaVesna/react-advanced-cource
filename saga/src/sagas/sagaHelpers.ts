@@ -1,6 +1,7 @@
 import { call, put, takeEvery, takeLatest, throttle } from 'redux-saga/effects'
 import * as actionTypes from '../actionTypes/sagaHelpers'
 import * as actionCreators from '../actionCreators/sagaHelpers'
+import { toast } from 'react-toastify'
 
 function* getUsers() {
   try {
@@ -10,8 +11,10 @@ function* getUsers() {
       ),
     )
     yield put(actionCreators.getUsersSuccess(users))
+    toast.success('Users loaded!')
   } catch (error) {
     yield put(actionCreators.getUsersError(error))
+    toast.error('Fail!')
   }
 }
 

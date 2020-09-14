@@ -9,12 +9,7 @@ export default (prevState = {}, action: { type: any; data: any; error: any }) =>
     case actionTypes.GET_CITIES:
       return Object.assign({}, prevState, { isFetching: true })
     case actionTypes.GET_CITIES_SUCCESS:
-      return Object.assign(
-        {},
-        prevState,
-        { isFetching: false },
-        { comments: action.data },
-      )
+      return Object.assign({}, prevState, { isFetching: false }, { cities: action.data })
     case actionTypes.ERROR:
       return Object.assign({}, prevState, { isFetching: false }, { error: action.error })
     default:

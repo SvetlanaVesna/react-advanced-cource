@@ -1,6 +1,7 @@
 import * as a from 'redux-saga'
 import { call, put, takeLatest, all } from 'redux-saga/effects'
 import * as actionTypes from '../actionTypes/parallel'
+import { toast } from 'react-toastify'
 
 console.log(a)
 
@@ -16,10 +17,16 @@ function* getData() {
 }
 
 function* fetchResource(resource: any, successAction: any) {
-  const data = yield call(() => fetch(resource).then(r => r.json()))
-  successAction.data = data
-  console.log(successAction)
-  yield put(successAction)
+  try {
+    const result = yield call(async () => {
+      const data = await fetch(resource)
+      return data.json()
+    })
+    yield put({ type: successAction.type, data: result })
+    toast.success(successAction.type)
+  } catch (e) {
+    toast.error('Fail!')
+  }
 }
 
 export function* runParallelCallsExample() {

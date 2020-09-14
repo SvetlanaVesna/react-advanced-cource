@@ -1,15 +1,21 @@
 import { call, fork, put, take, all } from 'redux-saga/effects'
+import { toast } from 'react-toastify'
 import * as actionTypes from '../actionTypes/blockingCalls'
 
 const API_ENDPOINT_CITIES = 'http://localhost:3000/cities'
 const API_ENDPOINT_USERS = 'http://localhost:3000/users'
 
 function* fetchResource(resource: any, successAction: any) {
-  const result = yield call(async () => {
-    const data = await fetch(resource)
-    return data.json()
-  })
-  yield put({ type: successAction.type, data: result })
+  try {
+    const result = yield call(async () => {
+      const data = await fetch(resource)
+      return data.json()
+    })
+    yield put({ type: successAction.type, data: result })
+    toast.success(successAction.type)
+  } catch (e) {
+    toast.error('Fail!')
+  }
 }
 
 function* getData() {

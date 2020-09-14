@@ -1,5 +1,6 @@
 import { fork, call, put, spawn, delay, takeEvery, all } from 'redux-saga/effects'
 import * as actionTypes from '../actionTypes/forkSpawnExample'
+import { toast } from 'react-toastify'
 
 const API_ENDPOINT_COMMENTS = 'http://localhost:3000/comments'
 const API_ENDPOINT_USERS = 'http://localhost:3000/users'
@@ -9,9 +10,9 @@ function* fetchAllWithFork() {
     type: actionTypes.GET_USERS_SUCCESS,
   })
   yield fork(fetchResource, API_ENDPOINT_COMMENTS, {
-    type: actionTypes.GET_COMMENTS_SUCCESS,
+    type: actionTypes.GET_CITIES_SUCCESS,
   })
-  yield call(delay, 500)
+  yield delay(500)
 }
 
 //spawn runs independently, hence error do not bubble up to parent in this case.
@@ -20,16 +21,22 @@ function* fetchAllWithSpwan() {
     type: actionTypes.GET_USERS_SUCCESS,
   })
   yield spawn(fetchResource, API_ENDPOINT_COMMENTS, {
-    type: actionTypes.GET_COMMENTS_SUCCESS,
+    type: actionTypes.GET_CITIES_SUCCESS,
   })
   yield call(delay, 500)
 }
 
 function* fetchResource(resource: any, successAction: any) {
-  const data = yield call(() => fetch(resource).then(r => r.json()))
-  successAction.data = data
-  console.log(successAction)
-  yield put(successAction)
+  try {
+    const result = yield call(async () => {
+      const data = await fetch(resource)
+      return data.json()
+    })
+    yield put({ type: successAction.type, data: result })
+    toast.success(successAction.type)
+  } catch (e) {
+    toast.error('Fail!')
+  }
 }
 
 function* mainFork() {

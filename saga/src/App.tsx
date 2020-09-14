@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-
+import 'react-toastify/dist/ReactToastify.css'
+import { ToastContainer } from 'react-toastify'
 import * as sagaHelpersExampleActions from './actionCreators/sagaHelpers'
 import * as forkSpawnExampleActionCreators from './actionCreators/forkSpwanExample'
 import * as nonBlockingCallsExampleActionCreators from './actionCreators/nonBlockingCalls'
@@ -66,6 +67,7 @@ const App = () => {
           Get Data
         </button>
       </fieldset>
+      <ToastContainer autoClose={4000} />
     </div>
   )
 }
