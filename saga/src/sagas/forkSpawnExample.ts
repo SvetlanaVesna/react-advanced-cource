@@ -29,7 +29,7 @@ function* fetchAllWithSpwan() {
 
 function* fetchResource(resource: any, successAction: any) {
   try {
-    const result = yield call(api(resource))
+    const result = yield call(api, resource)
     yield put({ type: successAction.type, data: result })
     toast.success(successAction.type)
   } catch (e) {

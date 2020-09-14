@@ -8,7 +8,7 @@ const API_ENDPOINT_USERS = 'http://localhost:3000/users'
 
 function* fetchResource(resource: any, successAction: any) {
   try {
-    const result = yield call(api(resource))
+    const result = yield call(api, resource)
     yield put({ type: successAction.type, data: result })
     toast.success(successAction.type)
   } catch (e) {
