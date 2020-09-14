@@ -1,6 +1,7 @@
 import { fork, call, put, spawn, delay, takeEvery, all } from 'redux-saga/effects'
 import * as actionTypes from '../actionTypes/forkSpawnExample'
 import { toast } from 'react-toastify'
+import { api } from '../utils'
 
 const API_ENDPOINT_COMMENTS = 'http://localhost:3000/comments'
 const API_ENDPOINT_USERS = 'http://localhost:3000/users'
@@ -28,10 +29,7 @@ function* fetchAllWithSpwan() {
 
 function* fetchResource(resource: any, successAction: any) {
   try {
-    const result = yield call(async () => {
-      const data = await fetch(resource)
-      return data.json()
-    })
+    const result = yield call(api(resource))
     yield put({ type: successAction.type, data: result })
     toast.success(successAction.type)
   } catch (e) {

@@ -2,6 +2,7 @@ import * as a from 'redux-saga'
 import { call, put, takeLatest, all } from 'redux-saga/effects'
 import * as actionTypes from '../actionTypes/parallel'
 import { toast } from 'react-toastify'
+import { api } from '../utils'
 
 console.log(a)
 
@@ -18,10 +19,7 @@ function* getData() {
 
 function* fetchResource(resource: any, successAction: any) {
   try {
-    const result = yield call(async () => {
-      const data = await fetch(resource)
-      return data.json()
-    })
+    const result = yield call(api(resource))
     yield put({ type: successAction.type, data: result })
     toast.success(successAction.type)
   } catch (e) {
