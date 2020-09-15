@@ -1,4 +1,4 @@
-import { call, fork, put, take, all } from 'redux-saga/effects'
+import { call, fork, put, take } from 'redux-saga/effects'
 import { toast } from 'react-toastify'
 import * as actionTypes from '../actionTypes/blockingCalls'
 import { api } from '../utils'
@@ -24,5 +24,5 @@ function* getData() {
 }
 
 export function* runBlockingCallsExample() {
-  yield all([getData()])
+  yield getData()
 }
