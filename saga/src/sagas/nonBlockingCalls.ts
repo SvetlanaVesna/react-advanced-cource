@@ -28,5 +28,4 @@ function* getCities() {
 export function* runNonBlockingCallsExample() {
   yield* getCities()
   yield* getUsers()
-
 }
