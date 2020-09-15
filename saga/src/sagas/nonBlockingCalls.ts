@@ -1,4 +1,4 @@
-import { fork, call, put, take, all } from 'redux-saga/effects'
+import { fork, call, put, take } from 'redux-saga/effects'
 import * as actionTypes from '../actionTypes/nonBlockingCalls'
 import { toast } from 'react-toastify'
 import { api } from '../utils'
@@ -26,5 +26,7 @@ function* getCities() {
 }
 
 export function* runNonBlockingCallsExample() {
-  yield all([getUsers(), getCities()])
+  yield* getCities()
+  yield* getUsers()
+
 }
