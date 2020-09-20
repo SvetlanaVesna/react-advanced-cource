@@ -19,6 +19,7 @@ const ThemeContext = React.createContext('')
 
 const SayHelloComponent = () => {
   const { sayHello, setName, name } = useContext(SayHelloContext)
+
   const classes = useStyles()
   return (
     <div>
@@ -33,9 +34,15 @@ const SayHelloComponent = () => {
 const WishGoodDayComponent = () => {
   const { name } = useContext(SayHelloContext)
 
+  const theme = useContext(ThemeContext)
+
   return (
     <div>
-      {name && <Typography>Have a good day, {name}!</Typography>}
+      {name && (
+        <Typography color={theme === 'dark' ? 'primary' : 'secondary'}>
+          Have a good day, {name}!
+        </Typography>
+      )}
       {!name && <Typography>Hope, you are ok!</Typography>}
     </div>
   )
