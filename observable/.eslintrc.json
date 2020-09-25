@@ -1,0 +1,54 @@
+{
+  "env": {
+    "browser": true,
+    "jest": true,
+    "es6": true,
+    "commonjs": true,
+    "node": true
+  },
+  "plugins": ["prettier"],
+  "extends": ["react-app", "prettier"],
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "rules": {
+    "prettier/prettier": "warn",
+
+    "strict": ["error", "global"],
+    "array-bracket-spacing": ["error", "never"],
+    "eqeqeq": ["error", "always", { "null": "ignore" }],
+    "no-alert": "error",
+    "no-debugger": "error",
+    "no-console": "error",
+    "no-array-constructor": "error",
+    "no-compare-neg-zero": "error",
+    "no-constant-condition": "error",
+    "no-delete-var": "error",
+    "no-duplicate-case": "error",
+    "no-eval": "error",
+    "no-shadow-restricted-names": "error",
+    "no-extra-boolean-cast": "error",
+    "no-fallthrough": "error",
+    "no-shadow": "error",
+    "no-implied-eval": "error",
+    "no-lonely-if": "error",
+    "no-else-return": "error",
+    "max-depth": ["error", 2],
+
+    "import/no-duplicates": "error",
+    "import/order": "warn",
+
+    "@typescript-eslint/consistent-type-definitions": ["warn", "interface"],
+    "@typescript-eslint/naming-convention": [
+      "error",
+      {
+        "selector": "typeLike",
+        "format": ["PascalCase"]
+      }
+    ],
+    "@typescript-eslint/no-extra-non-null-assertion": "error",
+    "@typescript-eslint/no-non-null-asserted-optional-chain": "error",
+    "@typescript-eslint/prefer-optional-chain": "error"
+  }
+}
