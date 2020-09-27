@@ -1,23 +1,21 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { createStore, applyMiddleware } from 'redux'
-import { Provider } from 'react-redux'
 import logger from 'redux-logger'
-import reducer from './reducers'
-import epics from './epics'
+import { combineEpics, createEpicMiddleware } from 'redux-observable'
+import { Provider } from 'react-redux'
+import Example from './components/Example'
+import { fetchUserEpic } from './actions'
+import rootReducer from './reducers'
+export const rootEpic = combineEpics(fetchUserEpic)
+const epicMiddleware = createEpicMiddleware()
+const store = createStore(rootReducer, applyMiddleware(epicMiddleware, logger))
 
-import './index.css'
-import App from './App'
-
-import { createEpicMiddleware } from 'redux-observable';
-
-const epicMiddleware = createEpicMiddleware();
-const store = createStore(reducer, applyMiddleware(epicMiddleware, logger))
-
-epicMiddleware.run(epics);
+// @ts-ignore
+epicMiddleware.run(rootEpic)
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <Example />
   </Provider>,
   document.getElementById('root'),
 )
