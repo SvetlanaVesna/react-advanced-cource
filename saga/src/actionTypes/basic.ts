@@ -1,6 +1,8 @@
 export const GET_USERS = 'basic/GET_USERS'
 export const GET_USERS_E = 'basic/GET_USERS_E'
+export const GET_USERS_W = 'basic/GET_USERS_W'
 export const GET_USERS_L = 'basic/GET_USERS_L'
 export const GET_USERS_T = 'basic/GET_USERS_T'
+export const GET_USERS_C = 'basic/GET_USERS_C'
 export const GET_USERS_SUCCESS = 'basic/GET_USERS_SUCCESS'
 export const ERROR = 'basic/GET_USERS_ERROR'

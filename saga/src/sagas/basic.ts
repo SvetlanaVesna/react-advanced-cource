@@ -1,4 +1,13 @@
-import { call, put, takeEvery, takeLatest, throttle } from 'redux-saga/effects'
+import {
+  call,
+  put,
+  takeEvery,
+  takeLatest,
+  throttle,
+  take,
+  fork,
+  cancel,
+} from 'redux-saga/effects'
 import * as actionTypes from '../actionTypes/basic'
 import * as actionCreators from '../actionCreators/basic'
 import { toast } from 'react-toastify'
@@ -25,4 +34,11 @@ export function* getUsersTakeLatest() {
 
 export function* getUsersThrottle() {
   yield throttle(5000, actionTypes.GET_USERS_T, getUsers)
+}
+export function* userWatcher() {
+  while (yield take(actionTypes.GET_USERS_W)) {
+    const bgSyncTask = yield fork(getUsers)
+    yield take(actionTypes.GET_USERS_C)
+    yield cancel(bgSyncTask)
+  }
 }

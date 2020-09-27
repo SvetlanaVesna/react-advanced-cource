@@ -26,7 +26,7 @@
   },
   "scripts": {
     "start": "PORT=3006 react-scripts start",
-    "localServer": "json-server --watch db.json",
+    "localServer": "json-server --watch db.json --routes routes.json",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
