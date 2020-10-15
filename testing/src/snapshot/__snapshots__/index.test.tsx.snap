@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snapshot test NameProvider renders correctly 1`] = `
+<a
+  href="http://www.facebook.com"
+>
+  Facebook
+</a>
+`;
+
+exports[`snapshot test NameProvider toMatchSnapshot 1`] = `
+<p>
+  ololo
+</p>
+`;
