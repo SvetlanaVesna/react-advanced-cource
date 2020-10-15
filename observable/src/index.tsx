@@ -3,12 +3,15 @@ import ReactDOM from 'react-dom'
 import { createStore, applyMiddleware } from 'redux'
 import logger from 'redux-logger'
 import { combineEpics, createEpicMiddleware } from 'redux-observable'
+import { ajax } from 'rxjs/ajax'
 import { Provider } from 'react-redux'
 import Example from './components/Example'
 import { fetchUserEpic } from './actions'
 import rootReducer from './reducers'
 export const rootEpic = combineEpics(fetchUserEpic)
-const epicMiddleware = createEpicMiddleware()
+const epicMiddleware = createEpicMiddleware({
+  dependencies: { getJSON: ajax.getJSON },
+})
 const store = createStore(rootReducer, applyMiddleware(epicMiddleware, logger))
 
 // @ts-ignore

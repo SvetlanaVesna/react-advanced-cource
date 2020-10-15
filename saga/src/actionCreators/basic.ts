@@ -22,3 +22,16 @@ export function getUsersSuccess(users: any) {
 export function getUsersError(error: any) {
   return { type: actionTypes.ERROR, error }
 }
+
+export const getUsersAsync = () => dispatch => {
+  dispatch(getUsers())
+  fetch('/users')
+    .then(res => {
+      dispatch(getUsersSuccess(res.data))
+      return res
+    })
+    .catch(error => {
+      dispatch(getUsersError(error))
+      return error
+    })
+}

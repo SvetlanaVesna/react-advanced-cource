@@ -1,17 +1,21 @@
 import { switchMap, map, takeUntil, startWith, delay } from 'rxjs/operators'
-import { ActionsObservable, ofType } from 'redux-observable'
-import { ajax } from 'rxjs/ajax';
+import {  ofType } from 'redux-observable'
+import { Observable } from 'rxjs'
 
 export const FETCH_USER = 'FETCH_USER'
 export const FETCH_USER_PENDING = 'FETCH_USER_PENDING'
 export const FETCH_USER_FULFILLED = 'FETCH_USER_FULFILLED'
 export const FETCH_USER_ABORTED = 'FETCH_USER_ABORTED'
 
-export const fetchUserEpic = (action$: ActionsObservable<any>) =>
+export const fetchUserEpic = (
+  action$: Observable<any>,
+  _: null,
+  { getJSON }: { getJSON:(url: string, headers?: Object)=> Observable<any> },
+) =>
   action$.pipe(
     ofType(FETCH_USER),
     switchMap(() =>
-      ajax.getJSON('http://localhost:3000/users/1').pipe(
+      getJSON('http://localhost:3000/users/1').pipe(
         delay(2000),
         map((payload: any) => createFetchUserFulfilledAction(payload)),
         takeUntil(action$.pipe(ofType(FETCH_USER_ABORTED))),
