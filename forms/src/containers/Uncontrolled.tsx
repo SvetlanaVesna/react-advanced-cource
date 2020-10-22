@@ -3,7 +3,7 @@ const NameForm = () => {
   const input = React.createRef<HTMLInputElement>();
 
   const handleSubmit = (event: BaseSyntheticEvent) => {
-    alert('A name was submitted: ' + input.current)
+    alert('A name was submitted: ' + input.current?.value)
     event.preventDefault()
   }
 
