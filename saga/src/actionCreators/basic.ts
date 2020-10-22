@@ -1,4 +1,5 @@
 import * as actionTypes from '../actionTypes/basic'
+import { Dispatch } from 'redux'
 
 export function getUsers() {
   return { type: actionTypes.GET_USERS }
@@ -23,15 +24,18 @@ export function getUsersError(error: any) {
   return { type: actionTypes.ERROR, error }
 }
 
-export const getUsersAsync = () => dispatch => {
-  dispatch(getUsers())
-  fetch('/users')
-    .then(res => {
-      dispatch(getUsersSuccess(res.data))
-      return res
-    })
-    .catch(error => {
-      dispatch(getUsersError(error))
-      return error
-    })
+export const getUsersAsync = () => {
+  return (dispatch: Dispatch) => {
+    dispatch(getUsers())
+    return fetch('http://localhost:3000/users')
+      .then(res => {
+        const data = res.json()
+        dispatch(getUsersSuccess(data))
+        return res
+      })
+      .catch(error => {
+        dispatch(getUsersError(error))
+        return error
+      })
+  }
 }

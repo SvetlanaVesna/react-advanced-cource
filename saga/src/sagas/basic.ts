@@ -13,8 +13,6 @@ import * as actionCreators from '../actionCreators/basic'
 import { toast } from 'react-toastify'
 import { api } from '../utils'
 
-
-
 export function* getUsers() {
   try {
     const users = yield call(api, 'http://localhost:3000/users')

@@ -9,9 +9,11 @@ import Example from './components/Example'
 import { fetchUserEpic } from './actions'
 import rootReducer from './reducers'
 export const rootEpic = combineEpics(fetchUserEpic)
+
 const epicMiddleware = createEpicMiddleware({
   dependencies: { getJSON: ajax.getJSON },
 })
+
 const store = createStore(rootReducer, applyMiddleware(epicMiddleware, logger))
 
 // @ts-ignore

@@ -1,6 +1,6 @@
 import * as actionTypes from '../actionTypes/basic'
 
-export default (prevState = {}, action: { type: any; users: any; error: any }) => {
+export default (prevState = {}, action: { type: any; users?: any; error?: any }) => {
   switch (action.type) {
     case actionTypes.GET_USERS:
       return Object.assign({}, prevState, { isFetching: true })
