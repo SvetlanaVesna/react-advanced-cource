@@ -1,6 +1,6 @@
 import React, { BaseSyntheticEvent } from 'react'
 const NameForm = () => {
-  const input = React.createRef<HTMLInputElement>();
+  const input = React.createRef<HTMLInputElement>()
 
   const handleSubmit = (event: BaseSyntheticEvent) => {
     alert('A name was submitted: ' + input.current?.value)

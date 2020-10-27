@@ -1,8 +1,18 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import NameForm from './containers/Uncontrolled'
+import NameForm from './containers/simpleForm/Uncontrolled'
+import ReactHooksForm from './containers/reactHooksForm/index'
 
 import './index.css'
 
-ReactDOM.render(<NameForm />, document.getElementById('root'))
+const App = () => {
+  return (
+    <>
+      <NameForm />
+      <h2>via React-hooks-form</h2>
+      <ReactHooksForm />
+    </>
+  )
+}
+ReactDOM.render(<App />, document.getElementById('root'))

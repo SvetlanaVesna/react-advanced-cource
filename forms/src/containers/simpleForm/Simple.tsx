@@ -1,6 +1,6 @@
 import React, { BaseSyntheticEvent, useState } from 'react'
 
-const App = () => {
+const Simple = () => {
   const [value, setValue] = useState()
 
   const handleChange = (event: BaseSyntheticEvent) => {
@@ -22,4 +22,4 @@ const App = () => {
   )
 }
 
-export default App
+export default Simple
