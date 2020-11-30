@@ -1,0 +1,27 @@
+{
+  "name": "lerna-react-ts",
+  "description": "React TypeScript project with Lerna",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "del-dist": "lerna exec --parallel -- del-cli dist",
+    "prebuild": "yarn del-dist",
+    "build": "lerna exec --scope shared -- tsc",
+    "start": "cd packages/myapp && yarn start",
+    "format": "prettier --print-width 80 --tab-width 4 --single-quote --write 'packages/*/src/**/{*.js,*.ts*}'",
+    "precommit": "lint-staged"
+  },
+  "devDependencies": {
+    "del-cli": "^3.0.1",
+    "husky": "^4.3.0",
+    "lerna": "^3.22.1",
+    "lint-staged": "^10.5.1",
+    "prettier": "^2.2.0"
+  },
+  "lint-staged": {
+    "*.ts*": [
+      "prettier --print-width 80 --tab-width 4 --single-quote --write",
+      "git add"
+    ]
+  }
+}

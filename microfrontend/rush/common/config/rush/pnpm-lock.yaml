@@ -5,6 +5,7 @@ dependencies:
   '@types/node': 10.17.27
   colors: 1.4.0
   rimraf: 2.7.1
+  skatejs: 5.2.4
   typescript: 3.9.7
   whatwg-fetch: 3.2.0
 lockfileVersion: 5.1
@@ -85,6 +86,10 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-uWjbaKIK3T1OSVptzX7Nl6PvQ3qAGtKEtVRjRuazjfL3Bx5eI409VZSqgND+4UNnmzLVdPj9FqFJNPqBZFve4w==
+  /skatejs/5.2.4:
+    dev: false
+    resolution:
+      integrity: sha512-Ygd4bB6VTiSFeVpry9R/EWej+/PGrYhO1eMMwsxDaBLMkzXfZRm0CHvggb7RAMEr0VCMc5cBt58I6IU0q6GLvw==
   /typescript/3.9.7:
     dev: false
     engines:
@@ -102,12 +107,13 @@ packages:
       integrity: sha1-tSQ9jz7BqjXxNkYFvA0QNuMKtp8=
   'file:projects/my-app.tgz':
     dependencies:
+      skatejs: 5.2.4
       typescript: 3.9.7
       whatwg-fetch: 3.2.0
     dev: false
     name: '@rush-temp/my-app'
     resolution:
-      integrity: sha512-5hQYNQ4OaheE4snzorkB/UcTAnQcq8uQ0uHMSpu7Q/3IPc6neV5wlvC9IM2aRs+YoC5MpjQlzP8AneCY+KngnQ==
+      integrity: sha512-+wEWj9Kw4mYETDsg4JBNTpk14DbTN/zr9Yn6D+6rgCpM/wGXiajmCb/zd4orjEcUjEvyRERpjbbpEZ8TOCYR8w==
       tarball: 'file:projects/my-app.tgz'
     version: 0.0.0
   'file:projects/my-controls.tgz':
@@ -131,6 +137,7 @@ packages:
       integrity: sha512-Mrgh3K0R8vXqJ3y4QPfJS2i+aXJzNBKITsr6yPgHwDVpSNlHZgqcAVeWuYOTwLiiyuNGSjmykcV2kt9fsKWJZg==
       tarball: 'file:projects/my-toolchain.tgz'
     version: 0.0.0
+registry: ''
 specifiers:
   '@rush-temp/my-app': 'file:./projects/my-app.tgz'
   '@rush-temp/my-controls': 'file:./projects/my-controls.tgz'
@@ -138,5 +145,6 @@ specifiers:
   '@types/node': ^10.9.4
   colors: ^1.3.2
   rimraf: ^2.6.2
+  skatejs: ~5.2.4
   typescript: ^3.0.3
   whatwg-fetch: ^3.0.0
