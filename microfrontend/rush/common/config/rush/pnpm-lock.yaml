@@ -4,8 +4,9 @@ dependencies:
   '@rush-temp/my-toolchain': 'file:projects/my-toolchain.tgz'
   '@types/node': 10.17.27
   colors: 1.4.0
+  react: 17.0.1
+  react-dom: 17.0.1_react@17.0.1
   rimraf: 2.7.1
-  skatejs: 5.2.4
   typescript: 3.9.7
   whatwg-fetch: 3.2.0
 lockfileVersion: 5.1
@@ -61,12 +62,29 @@ packages:
     dev: false
     resolution:
       integrity: sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==
+  /js-tokens/4.0.0:
+    dev: false
+    resolution:
+      integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==
+  /loose-envify/1.4.0:
+    dependencies:
+      js-tokens: 4.0.0
+    dev: false
+    hasBin: true
+    resolution:
+      integrity: sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==
   /minimatch/3.0.4:
     dependencies:
       brace-expansion: 1.1.11
     dev: false
     resolution:
       integrity: sha512-yJHVQEhyqPLUTgt9B83PXu6W3rx4MvvHvSUvToogpwoGDOUQ+yDrR0HRot+yOCdCO7u4hX3pWft6kWBBcqh0UA==
+  /object-assign/4.1.1:
+    dev: false
+    engines:
+      node: '>=0.10.0'
+    resolution:
+      integrity: sha1-IQmtx5ZYh8/AXLvUQsrIv7s2CGM=
   /once/1.4.0:
     dependencies:
       wrappy: 1.0.2
@@ -79,6 +97,26 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha1-F0uSaHNVNP+8es5r9TpanhtcX18=
+  /react-dom/17.0.1_react@17.0.1:
+    dependencies:
+      loose-envify: 1.4.0
+      object-assign: 4.1.1
+      react: 17.0.1
+      scheduler: 0.20.1
+    dev: false
+    peerDependencies:
+      react: 17.0.1
+    resolution:
+      integrity: sha512-6eV150oJZ9U2t9svnsspTMrWNyHc6chX0KzDeAOXftRa8bNeOKTTfCJ7KorIwenkHd2xqVTBTCZd79yk/lx/Ug==
+  /react/17.0.1:
+    dependencies:
+      loose-envify: 1.4.0
+      object-assign: 4.1.1
+    dev: false
+    engines:
+      node: '>=0.10.0'
+    resolution:
+      integrity: sha512-lG9c9UuMHdcAexXtigOZLX8exLWkW0Ku29qPRU8uhF2R9BN96dLCt0psvzPLlHc5OWkgymP3qwTRgbnw5BKx3w==
   /rimraf/2.7.1:
     dependencies:
       glob: 7.1.6
@@ -86,6 +124,13 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-uWjbaKIK3T1OSVptzX7Nl6PvQ3qAGtKEtVRjRuazjfL3Bx5eI409VZSqgND+4UNnmzLVdPj9FqFJNPqBZFve4w==
+  /scheduler/0.20.1:
+    dependencies:
+      loose-envify: 1.4.0
+      object-assign: 4.1.1
+    dev: false
+    resolution:
+      integrity: sha512-LKTe+2xNJBNxu/QhHvDR14wUXHRQbVY5ZOYpOGWRzhydZUqrLb2JBvLPY7cAqFmqrWuDED0Mjk7013SZiOz6Bw==
   /skatejs/5.2.4:
     dev: false
     resolution:
@@ -107,13 +152,15 @@ packages:
       integrity: sha1-tSQ9jz7BqjXxNkYFvA0QNuMKtp8=
   'file:projects/my-app.tgz':
     dependencies:
+      react: 17.0.1
+      react-dom: 17.0.1_react@17.0.1
       skatejs: 5.2.4
       typescript: 3.9.7
       whatwg-fetch: 3.2.0
     dev: false
     name: '@rush-temp/my-app'
     resolution:
-      integrity: sha512-+wEWj9Kw4mYETDsg4JBNTpk14DbTN/zr9Yn6D+6rgCpM/wGXiajmCb/zd4orjEcUjEvyRERpjbbpEZ8TOCYR8w==
+      integrity: sha512-cTs3qNWcML/Mit6NIoUJAkZYrhLEE/dIOuACoc4RJADTLAQOCGxVswECkayJhppcl2mZCHvJvetj+1Ygr/Rgbw==
       tarball: 'file:projects/my-app.tgz'
     version: 0.0.0
   'file:projects/my-controls.tgz':
@@ -144,7 +191,8 @@ specifiers:
   '@rush-temp/my-toolchain': 'file:./projects/my-toolchain.tgz'
   '@types/node': ^10.9.4
   colors: ^1.3.2
+  react: ~17.0.1
+  react-dom: ~17.0.1
   rimraf: ^2.6.2
-  skatejs: ~5.2.4
   typescript: ^3.0.3
   whatwg-fetch: ^3.0.0

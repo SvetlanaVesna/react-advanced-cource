@@ -21,7 +21,8 @@
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^3.4.1",
-    "subscriptions-transport-ws": "^0.9.17"
+    "subscriptions-transport-ws": "^0.9.17",
+    "apollo-link-ws": "^1.0.20"
   },
   "scripts": {
     "start": "yarn codegen & yarn start:local",

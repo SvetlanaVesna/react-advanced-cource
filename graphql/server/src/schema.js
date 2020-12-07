@@ -67,6 +67,9 @@ const typeDefs = gql`
     addBookToAuthor(bookId: ID!, authorId: ID!): Author!
     addComment(comment: NewComment!): Book!
   }
+  type Subscription {
+    authorAdded: Author
+  }
 `;
 
 module.exports = typeDefs;

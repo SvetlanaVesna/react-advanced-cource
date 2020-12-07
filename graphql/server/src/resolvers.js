@@ -1,3 +1,7 @@
+const { PubSub } = require("apollo-server");
+const pubsub = new PubSub();
+const AUTHOR_ADDED = "AUTHOR_ADDED";
+
 module.exports = {
   Query: {
     allBooks: async (_, {}, { dataSources }) => {
@@ -36,11 +40,17 @@ module.exports = {
       return null;
     },
     deleteAuthor: async (_, { authorId }, { dataSources }) => {
-      return await dataSources.authorsAPI.deleteAuthor(authorId)
+      return await dataSources.authorsAPI.deleteAuthor(authorId);
     },
     addComment: async (_, params, { dataSources }) => {
       const newBook = await dataSources.booksAPI.addComment(params);
       if (newBook) return newBook;
+    }
+  },
+  Subscription: {
+    authorAdded: {
+      // Additional event labels can be passed to asyncIterator creation
+      subscribe: () => pubsub.asyncIterator([AUTHOR_ADDED])
     }
   }
 };

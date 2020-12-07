@@ -1,5 +1,4 @@
 const { ApolloServer } = require("apollo-server");
-
 const typeDefs = require("./schema");
 
 const resolvers = require("./resolvers");
@@ -19,7 +18,24 @@ const server = new ApolloServer({
     booksAPI: new BooksAPI({ store }),
     authorsAPI: new AuthorsAPI({ store }),
     userAPI: new UserAPI({ store })
-  })
+  }),
+  context: ({ req, connection }) => {
+    if (connection) {
+      return {
+        dataSources: {
+          booksAPI: new BooksAPI({ store }),
+          authorsAPI: new AuthorsAPI({ store }),
+          userAPI: new UserAPI({ store })
+        }
+      };
+    }
+  },
+  subscriptions: {
+    onConnect: (connectionParams, webSocket, context) => context,
+    onDisconnect: (webSocket, context) => {
+      console.log("onDisconnect");
+    }
+  }
 });
 
 server.listen().then(({ url }) => {

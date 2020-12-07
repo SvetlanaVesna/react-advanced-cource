@@ -7,6 +7,14 @@
       "allowedCategories": [ "production" ]
     },
     {
+      "name": "react",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "react-dom",
+      "allowedCategories": [ "production" ]
+    },
+    {
       "name": "whatwg-fetch",
       "allowedCategories": [ "production" ]
     }
