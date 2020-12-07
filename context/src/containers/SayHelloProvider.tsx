@@ -1,4 +1,12 @@
-import React, { FC, createContext, useState, Dispatch, SetStateAction } from 'react'
+import React, {
+  FC,
+  createContext,
+  useState,
+  Dispatch,
+  SetStateAction,
+  useMemo,
+  useCallback,
+} from 'react'
 import { noop } from 'lodash'
 
 export const SayHelloContext = createContext<{
@@ -19,18 +27,21 @@ export const SayHelloContext = createContext<{
 const SayHelloProvider: FC = ({ children }) => {
   const [name, setName] = useState('')
 
-  const sayHello = () => {
+  const sayHello = useCallback(() => {
     if (name) {
       return `Hi, ${name}`
     }
     return 'Hi, what is your name?'
-  }
+  }, [name])
 
-  const values = {
-    sayHello,
-    name,
-    setName,
-  }
+  const values = useMemo(
+    () => ({
+      sayHello,
+      name,
+      setName,
+    }),
+    [sayHello, name, setName],
+  )
 
   return <SayHelloContext.Provider value={values}>{children}</SayHelloContext.Provider>
 }
