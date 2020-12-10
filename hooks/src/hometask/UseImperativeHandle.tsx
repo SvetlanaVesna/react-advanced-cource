@@ -4,7 +4,7 @@ import * as React from 'react'
 function MessagesDisplay({
   messages,
 }: {
-  messages: { id: number; author: string; content: string }[],
+  messages: { id: number; author: string; content: string }[]
   ref: any
 }) {
   const containerRef = React.useRef<HTMLDivElement>(null)
