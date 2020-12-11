@@ -7,6 +7,7 @@ import { createBrowserHistory } from 'history'
 import UseLayout from './hometask/UseLayout'
 import UseRefPage from './classwork/useRef'
 import LifecyclePage from './classwork/lifecycle'
+import AdditionalHoooks from './classwork/additionalHooks'
 
 const App = () => (
   <Router history={createBrowserHistory()}>
@@ -21,6 +22,9 @@ const App = () => (
         <li>
           <Link to="/lifecycle">Lifecycle Examples</Link>
         </li>
+        <li>
+          <Link to="/additionalHooks">Additional Hooks Examples</Link>
+        </li>
       </ul>
     </nav>
     <Switch>
@@ -34,6 +38,10 @@ const App = () => (
       <Route path="/lifecycle">
         <h4>Lifecycle Example:</h4>
         <LifecyclePage />
+      </Route>
+      <Route path="/additionalHooks">
+        <h4>Additional Hooks Examples:</h4>
+        <AdditionalHoooks />
       </Route>
     </Switch>
   </Router>
