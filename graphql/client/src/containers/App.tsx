@@ -6,11 +6,13 @@ import {
   ApolloProvider,
   HttpLink,
   NormalizedCacheObject,
-  ApolloLink,
+  split,
 } from '@apollo/client'
 import { WebSocketLink } from '@apollo/client/link/ws'
 import { SubscriptionClient } from 'subscriptions-transport-ws'
+import { getMainDefinition } from '@apollo/client/utilities'
 
+import { OperationDefinitionNode } from 'graphql'
 import routes from './route'
 
 const cache = new InMemoryCache()
@@ -22,11 +24,23 @@ const subscriptionClient = new SubscriptionClient('ws://localhost:4000/graphql',
   reconnect: true,
 })
 
-const link = new WebSocketLink(subscriptionClient)
+const wsLink = new WebSocketLink(subscriptionClient)
+// using the ability to split links, you can send data to each link
+// depending on what kind of operation is being sent
+
+const link = split(
+  // split based on operation type
+  ({ query }) => {
+    const { kind, operation } = getMainDefinition(query) as OperationDefinitionNode
+    return kind === 'OperationDefinition' && operation === 'subscription'
+  },
+  wsLink,
+  httpLink,
+)
 
 const client: ApolloClient<NormalizedCacheObject> = new ApolloClient({
   cache,
-  link: ApolloLink.from([link, httpLink]),
+  link,
 
   headers: {
     authorization: localStorage.getItem('token') || '',
