@@ -31,6 +31,9 @@ module.exports = {
       const newBook = await dataSources.booksAPI.addBook(book);
       if (newBook) return newBook;
     },
+    editBook: async (_, { bookId, book }, { dataSources }) => {
+      return await dataSources.booksAPI.editBook(bookId, book);
+    },
     addBookToAuthor: async (_, { bookId, authorId }, { dataSources }) => {
       const author = await dataSources.authorsAPI.addBookToAuthor(
         bookId,
