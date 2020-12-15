@@ -9,9 +9,27 @@ const SignupForm = () => {
       email: '',
     },
     onSubmit: values => {
-      alert(JSON.stringify(values, null, 2))
+      console.log('isSubmitting at submit start', formik.isSubmitting)
+      console.log('submitCount at submit start', formik.submitCount)
+      console.log('isValidating at submit start', formik.isValidating)
+
+      return new Promise(resolve => {
+        setTimeout(() => {
+          console.log('isSubmitting in submit process', formik.isSubmitting)
+          console.log('submitCount in submit process', formik.submitCount)
+          console.log('isValidating in submit process', formik.isValidating)
+
+          formik.setSubmitting(false)
+          resolve(values)
+        }, Math.random() * 1000)
+      })
     },
   })
+
+  console.log('isSubmitting', formik.isSubmitting)
+  console.log('submitCount', formik.submitCount)
+  console.log('isValidating', formik.isValidating)
+
   return (
     <form onSubmit={formik.handleSubmit}>
       <label htmlFor="firstName">First Name</label>
@@ -42,3 +60,5 @@ const SignupForm = () => {
     </form>
   )
 }
+
+export default SignupForm
