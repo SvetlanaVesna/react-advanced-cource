@@ -15,7 +15,19 @@ import {
 
 function asyncReducer(
   _state: any,
-  action: { type: string; pokemon?: object; error?: string; data?: object },
+  action: {
+    type: string
+    pokemon?: object
+    error?: string
+    data?:
+      | {
+          name: string
+          number: string
+          attacks: { special: { name: string; type: string; damage: string }[] }
+          fetchedAt: string
+        }
+      | undefined
+  },
 ) {
   switch (action.type) {
     case 'pending': {

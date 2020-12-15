@@ -1,3 +1,4 @@
+// @ts-nocheck // FIXME - fix typings issue
 import React, { SetStateAction, useEffect, useReducer, useState } from 'react'
 import {
   fetchPokemon,
