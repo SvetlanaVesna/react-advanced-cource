@@ -56,8 +56,13 @@ class BooksAPI extends DataSource {
       pubDate: params.comment.pubDate,
       text: params.comment.text
     });
+
     if (newComment) await book.addComments([newComment]);
-    return await book.save();
+
+    return await this.store.books.findOne({
+      where: { id: params.comment.bookId },
+      include: ["comments"]
+    });
   }
 }
 
