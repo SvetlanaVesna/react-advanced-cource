@@ -87,7 +87,7 @@ const ReactHooksForm = () => {
                 type="radio"
                 name="genderOptions"
                 value="Male"
-                id="inlineRadio1"
+                id="genderOptions"
                 ref={register}
               />
               <label htmlFor="inlineRadio1">Male</label>
@@ -97,20 +97,20 @@ const ReactHooksForm = () => {
                 type="radio"
                 name="genderOptions"
                 value="Female"
-                id="inlineRadio2"
+                id="genderOptions2"
                 ref={register}
               />
-              <label htmlFor="inlineRadio2">Female</label>
+              <label htmlFor="genderOptions2">Female</label>
             </div>
             <div>
               <input
                 type="radio"
                 name="genderOptions"
-                value=" Non-binary"
-                id="inlineRadio3"
+                value="Non-binary"
+                id="genderOptions3"
                 ref={register}
               />
-              <label htmlFor="inlineRadio3">Non-binary</label>
+              <label htmlFor="genderOptions3">Non-binary</label>
             </div>
           </div>
           <div>
@@ -133,10 +133,10 @@ const ReactHooksForm = () => {
               type="checkbox"
               placeholder="Subscribe to Newsletter"
               name="Subscribe to Newsletter"
-              id="customCheck1"
+              id="subscribeToNewsLetter"
               ref={register}
             />
-            <label htmlFor="customCheck1"> Subscribe to Newsletter</label>
+            <label htmlFor="subscribeToNewsLetter"> Subscribe to Newsletter</label>
           </div>
           <div>
             <input type="submit" />
