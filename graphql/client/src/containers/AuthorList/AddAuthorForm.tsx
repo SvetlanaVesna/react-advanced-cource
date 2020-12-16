@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useState } from 'react'
+import React, { FC, useCallback, useEffect, useState } from 'react'
 import {
   Button,
   Dialog,
@@ -10,8 +10,8 @@ import {
 } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import { useMutation } from '@apollo/client'
-import { ADD_AUTHOR_MUTATION } from './graphql'
 import ErrorComponent from 'components/Error'
+import { ADD_AUTHOR_MUTATION } from './graphql'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -50,12 +50,15 @@ const AddAuthorForm: FC<{
     })
   }, [firstname, lastname, middlename, bio, addAuthor])
 
+  useEffect(() => {
+    if (data) {
+      onSuccess()
+      handleClose()
+    }
+  })
   if (loading) return <CircularProgress />
   if (error) return <ErrorComponent error={error} />
-  if (data) {
-    onSuccess()
-    handleClose()
-  }
+
   return (
     <Dialog
       open={open}

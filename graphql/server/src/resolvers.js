@@ -25,11 +25,15 @@ module.exports = {
     },
     addAuthor: async (_, { author }, { dataSources }) => {
       const newAuthor = await dataSources.authorsAPI.addAuthor(author);
+      await pubsub.publish(AUTHOR_ADDED, { authorAdded: newAuthor });
       if (newAuthor) return newAuthor;
     },
     addBook: async (_, { book }, { dataSources }) => {
       const newBook = await dataSources.booksAPI.addBook(book);
       if (newBook) return newBook;
+    },
+    editBook: async (_, { bookId, book }, { dataSources }) => {
+      return await dataSources.booksAPI.editBook(bookId, book);
     },
     addBookToAuthor: async (_, { bookId, authorId }, { dataSources }) => {
       const author = await dataSources.authorsAPI.addBookToAuthor(

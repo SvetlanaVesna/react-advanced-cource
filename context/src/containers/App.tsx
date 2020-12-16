@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const ThemeContext = React.createContext('')
+const ThemeContext = React.createContext('light')
 
 const SayHelloComponent = () => {
   const { sayHello, setName, name } = useContext(SayHelloContext)

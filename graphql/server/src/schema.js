@@ -46,6 +46,14 @@ const typeDefs = gql`
     title: String!
   }
 
+  input editBookInput {
+    description: String
+    pubDate: Date
+    title: String
+    authorId: ID!
+    bookId: ID!
+  }
+
   input NewComment {
     bookId: ID!
     author: String!
@@ -64,6 +72,7 @@ const typeDefs = gql`
     addAuthor(author: NewAuthorInput): Author!
     deleteAuthor(authorId: ID!): String
     addBook(book: NewBookInput): Book!
+    editBook(bookId: ID!, book: editBookInput): Book!
     addBookToAuthor(bookId: ID!, authorId: ID!): Author!
     addComment(comment: NewComment!): Book!
   }

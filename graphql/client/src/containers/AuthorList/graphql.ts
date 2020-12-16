@@ -67,3 +67,14 @@ export const ADD_AUTHOR_MUTATION = gql`
     }
   }
 `
+
+export const AUTHOR_ADDED = gql`
+  subscription onAuthorAdded {
+    authorAdded {
+      id
+      lastname
+      firstname
+      middlename
+    }
+  }
+`

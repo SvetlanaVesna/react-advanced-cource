@@ -18,13 +18,24 @@ class BooksAPI extends DataSource {
   }
 
   async getAllBooks() {
-    return this.store.books.findAll({ include: this.store.authors });
+    return this.store.books.findAll({ include: "author" });
   }
 
   async getBook(id) {
     return this.store.books.findOne({
       where: { id }
     });
+  }
+
+  async editBook(id, bookToEdit) {
+    return await this.store.books.update(
+      {
+        authorId: bookToEdit.authorId
+      },
+      {
+        where: { id }
+      }
+    );
   }
 
   async addBook(book) {
