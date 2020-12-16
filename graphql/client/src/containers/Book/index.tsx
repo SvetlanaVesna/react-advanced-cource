@@ -52,7 +52,7 @@ const BookComponent = ({
           <Paper className={classes.comments}>
             <div className={classes.title}>Comments</div>
             <div className={classes.pagination}>
-              <Button onClick={setPreviousPage}>Prew</Button>
+              <Button onClick={setPreviousPage}>Prev</Button>
               <Button onClick={setNextPage}>Next</Button>
             </div>
           </Paper>

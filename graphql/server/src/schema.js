@@ -77,6 +77,7 @@ const typeDefs = gql`
     addComment(comment: NewComment!): Book!
   }
   type Subscription {
+    authorAdded: Author
     commentAdded: Comment
     authorAdded: Author
   }
