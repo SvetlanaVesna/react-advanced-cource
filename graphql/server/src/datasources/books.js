@@ -1,5 +1,4 @@
 const { DataSource } = require("apollo-datasource");
-const uuidv4 = require("uuid/v4");
 
 class BooksAPI extends DataSource {
   constructor({ store }) {
@@ -43,14 +42,17 @@ class BooksAPI extends DataSource {
     if (newBook) return newBook;
     return null;
   }
+
   async addComment(params) {
+    console.log(this.store.books)
     const book = await this.store.books.findOne({
-      where: { id: params.id }
+      where: { id: params.comment.bookId },
+      include: ["comments"]
     });
     const newComment = this.store.comments.create({
-      author: params.author,
-      pubDate: params.pubDate,
-      text: params.text
+      author: params.comment.author,
+      pubDate: params.comment.pubDate,
+      text: params.comment.text
     });
 
     await book.addComments([newComment]);

@@ -1,3 +1,6 @@
+const { gql } = require("apollo-server");
+
+const typeDefs = gql`
   scalar Date
   type User {
     id: ID!
@@ -43,6 +46,14 @@
     title: String!
   }
 
+  input editBookInput {
+    description: String
+    pubDate: Date
+    title: String
+    authorId: ID!
+    bookId: ID!
+  }
+
   input NewComment {
     bookId: ID!
     author: String!
@@ -61,9 +72,13 @@
     addAuthor(author: NewAuthorInput): Author!
     deleteAuthor(authorId: ID!): String
     addBook(book: NewBookInput): Book!
+    editBook(bookId: ID!, book: editBookInput): Book!
     addBookToAuthor(bookId: ID!, authorId: ID!): Author!
     addComment(comment: NewComment!): Book!
   }
   type Subscription {
-    authorAdded: Author
+    commentAdded: Comment
   }
+`;
+
+module.exports = typeDefs;
