@@ -1,6 +1,7 @@
 const { PubSub } = require("apollo-server");
 const pubsub = new PubSub();
 const COMMENT_ADDED = "COMMENT_ADDED";
+const AUTHOR_ADDED = "AUTHOR_ADDED";
 
 module.exports = {
   Query: {
@@ -53,8 +54,10 @@ module.exports = {
   },
   Subscription: {
     commentAdded: {
-      // Additional event labels can be passed to asyncIterator creation
       subscribe: () => pubsub.asyncIterator([COMMENT_ADDED])
+    },
+    authorAdded: {
+      subscribe: () => pubsub.asyncIterator([AUTHOR_ADDED])
     }
   }
 };
