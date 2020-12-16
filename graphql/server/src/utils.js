@@ -56,8 +56,12 @@ module.exports.createStore = () => {
     pubDate: DataTypes.DATE,
     text: DataTypes.STRING
   });
+
   authors.hasMany(books, { as: "books" });
   books.belongsTo(authors);
+
   books.hasMany(comments, { as: "comments" });
+  comments.belongsTo(books, { foreignKey: "bookId" });
+
   return { db, users, books, authors, comments };
 };

@@ -17,7 +17,7 @@ class BooksAPI extends DataSource {
   }
 
   async getAllBooks() {
-    return this.store.books.findAll({ include: "author" });
+    return this.store.books.findAll({ include: ["author", "comments"] });
   }
 
   async getBook(id) {
@@ -44,18 +44,18 @@ class BooksAPI extends DataSource {
   }
 
   async addComment(params) {
-    console.log(this.store.books)
     const book = await this.store.books.findOne({
       where: { id: params.comment.bookId },
       include: ["comments"]
     });
-    const newComment = this.store.comments.create({
+
+    await this.store.comments.sync();
+    const newComment = await this.store.comments.create({
       author: params.comment.author,
       pubDate: params.comment.pubDate,
       text: params.comment.text
     });
-
-    await book.addComments([newComment]);
+    if (newComment) await book.addComments([newComment]);
     return await book.save();
   }
 }
