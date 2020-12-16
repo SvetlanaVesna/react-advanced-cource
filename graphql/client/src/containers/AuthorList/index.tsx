@@ -1,15 +1,33 @@
-import React from 'react'
-import { useQuery } from '@apollo/client'
-import { Button } from '@material-ui/core'
+import React, { FC } from 'react'
+import { useQuery, useSubscription } from '@apollo/client'
+import { Button, Card, CardContent } from '@material-ui/core'
 import { isNil } from 'lodash'
 import { TableComponent } from 'components'
 import ErrorComponent from 'components/Error'
 
-import { GET_AUTHOR_LIST } from './graphql'
+import { AUTHOR_ADDED, GET_AUTHOR_LIST } from './graphql'
 import { getAllAuthors } from './__generated__/getAllAuthors'
 import AddAuthorForm from './AddAuthorForm'
 
 const headerContent = ['First name', 'Last Name', 'Quantity Books', 'Link']
+
+const NewAuthor: FC<{ onNewAuthor: () => void }> = ({ onNewAuthor }) => {
+  const { data } = useSubscription<any>(AUTHOR_ADDED, {
+    onSubscriptionData: () => {
+      onNewAuthor()
+    },
+  })
+
+  if (!data) return null
+
+  return (
+    <Card style={{ marginBottom: 20 }}>
+      <CardContent>
+        New author added: {data.authorAdded.firstname} {data.authorAdded.lastname}
+      </CardContent>
+    </Card>
+  )
+}
 
 const AuthorsContainer = () => {
   const { data, loading, error, refetch } = useQuery<getAllAuthors>(GET_AUTHOR_LIST)
@@ -36,6 +54,8 @@ const AuthorsContainer = () => {
 
   return (
     <div>
+      <NewAuthor onNewAuthor={refetch} />
+
       <TableComponent
         headerContent={headerContent}
         title={

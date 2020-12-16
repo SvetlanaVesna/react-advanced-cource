@@ -9,15 +9,16 @@ export const styles = (theme: any) => ({
     flexGrow: 1,
   },
   drawer: {
-    width: 240,
+    width: 200,
     flexShrink: 0,
   },
   drawerPaper: {
-    width: 240,
+    width: 200,
+    backgroundColor: '#6772b7',
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing.unit * 3,
+    padding: theme.spacing(3),
   },
   toolbar: theme.mixins.toolbar,
   link: {

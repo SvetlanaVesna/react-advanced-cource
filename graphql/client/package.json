@@ -9,6 +9,7 @@
     "@material-ui/icons": "^4.9.1",
     "@reach/router": "^1.2.1",
     "@types/js-cookie": "^2.2.6",
+    "apollo-link-ws": "^1.0.20",
     "cosmiconfig": "^6.0.0",
     "emotion": "^9.2.12",
     "graphql": "^14.4.2",
@@ -21,8 +22,7 @@
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^3.4.1",
-    "subscriptions-transport-ws": "^0.9.17",
-    "apollo-link-ws": "^1.0.20"
+    "subscriptions-transport-ws": "^0.9.18"
   },
   "scripts": {
     "start": "yarn codegen & yarn start:local",

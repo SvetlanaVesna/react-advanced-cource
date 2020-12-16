@@ -10,13 +10,13 @@ import OpenNew from '@material-ui/icons/OpenInNew'
 import { Link } from 'react-router-dom'
 import TableFooter from '@material-ui/core/TableFooter'
 import TablePagination from '@material-ui/core/TablePagination'
-import TablePaginationActionsWrapped from './TablePaginationActions'
 import { BasicStyledComponent } from '../../types'
+import TablePaginationActionsWrapped from './TablePaginationActions'
 
 const styles = (theme: any) => ({
   root: {
     width: '100%',
-    marginTop: theme.spacing.unit * 3,
+    marginTop: theme.spacing(3),
     'overflow-x': 'auto',
   },
   table: {

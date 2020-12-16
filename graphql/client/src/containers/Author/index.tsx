@@ -10,10 +10,10 @@ import { isNil } from 'lodash'
 
 import { TableComponent } from 'components'
 import ErrorComponent from 'components/Error'
+import { BasicStyledComponent } from 'types'
 
 import { GET_AUTHOR_BY_ID } from './graphql'
 
-import { BasicStyledComponent } from 'types'
 import { getAuthor } from './__generated__/getAuthor'
 
 const styles = (theme: any) => ({
@@ -21,11 +21,11 @@ const styles = (theme: any) => ({
     flexGrow: 1,
   },
   bio: {
-    padding: theme.spacing.unit * 2,
+    padding: theme.spacing(2),
     margin: 'auto',
   },
   books: {
-    padding: theme.spacing.unit * 4,
+    padding: theme.spacing(4),
     margin: 'auto',
     marginTop: '20px',
   },

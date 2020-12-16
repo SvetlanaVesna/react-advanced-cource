@@ -25,6 +25,7 @@ module.exports = {
     },
     addAuthor: async (_, { author }, { dataSources }) => {
       const newAuthor = await dataSources.authorsAPI.addAuthor(author);
+      await pubsub.publish(AUTHOR_ADDED, { authorAdded: newAuthor });
       if (newAuthor) return newAuthor;
     },
     addBook: async (_, { book }, { dataSources }) => {
