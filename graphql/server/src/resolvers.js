@@ -54,12 +54,11 @@ module.exports = {
     }
   },
   Subscription: {
-    authorAdded: {
-      // Additional event labels can be passed to asyncIterator creation
-      subscribe: () => pubsub.asyncIterator([AUTHOR_ADDED])
-    },
     commentAdded: {
       subscribe: () => pubsub.asyncIterator([COMMENT_ADDED])
+    },
+    authorAdded: {
+      subscribe: () => pubsub.asyncIterator([AUTHOR_ADDED])
     }
   }
 };

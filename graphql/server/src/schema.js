@@ -79,6 +79,7 @@ const typeDefs = gql`
   type Subscription {
     authorAdded: Author
     commentAdded: Comment
+    authorAdded: Author
   }
 `;
 
