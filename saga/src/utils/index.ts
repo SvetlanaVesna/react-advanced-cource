@@ -12,3 +12,4 @@ export const api = (resource: string) =>
     .catch(error => {
       throw Error(error.statusText)
     })
+

@@ -7,6 +7,7 @@ import * as forkSpawnExampleActionCreators from './actionCreators/forkSpwanExamp
 import * as nonBlockingCallsExampleActionCreators from './actionCreators/nonBlockingCalls'
 import * as blockingCallsExampleActionCreators from './actionCreators/blockingCalls'
 import * as parallelCallsExampleActionCreators from './actionCreators/parallel'
+import * as raceCallsExampleActionCreators from './actionCreators/race'
 
 const App = () => {
   const dispatch = useDispatch()
@@ -65,6 +66,15 @@ const App = () => {
         <legend>Saga Effects - Parallel calls</legend>
         <button onClick={() => dispatch(parallelCallsExampleActionCreators.getData())}>
           Get Data
+        </button>
+      </fieldset>
+      <fieldset>
+        <legend>Race & cancel task</legend>
+        <button onClick={() => dispatch(raceCallsExampleActionCreators.getDataRace())}>
+          Get Data
+        </button>
+        <button onClick={() => dispatch(raceCallsExampleActionCreators.getCancelTask())}>
+          Cancel task
         </button>
       </fieldset>
       <ToastContainer autoClose={4000} />

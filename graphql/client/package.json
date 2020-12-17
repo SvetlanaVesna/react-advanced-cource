@@ -12,7 +12,7 @@
     "apollo-link-ws": "^1.0.20",
     "cosmiconfig": "^6.0.0",
     "emotion": "^9.2.12",
-    "graphql": "^14.4.2",
+    "graphql": "^14.6.0",
     "js-cookie": "^2.2.1",
     "lodash": "^4.17.19",
     "moment": "latest",

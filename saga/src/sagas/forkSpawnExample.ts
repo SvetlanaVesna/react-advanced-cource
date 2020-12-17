@@ -17,18 +17,19 @@ function* fetchAllWithFork() {
 }
 
 //spawn runs independently, hence error do not bubble up to parent in this case.
-function* fetchAllWithSpwan() {
+function* fetchAllWithSpawn() {
   yield spawn(fetchResource, API_ENDPOINT_USERS, {
     type: actionTypes.GET_USERS_SUCCESS,
   })
   yield spawn(fetchResource, API_ENDPOINT_COMMENTS, {
     type: actionTypes.GET_CITIES_SUCCESS,
   })
-  yield call(delay, 500)
+  yield delay(500)
 }
 
 function* fetchResource(resource: any, successAction: any) {
   try {
+    yield delay(2000)
     const result = yield call(api, resource)
     yield put({ type: successAction.type, data: result })
     toast.success(successAction.type)
@@ -40,6 +41,7 @@ function* fetchResource(resource: any, successAction: any) {
 function* mainFork() {
   try {
     yield call(fetchAllWithFork)
+    toast.success("fetchAllWithFork finished")
   } catch (error) {
     yield put({ type: actionTypes.ERROR, error })
   }
@@ -47,7 +49,8 @@ function* mainFork() {
 
 function* mainSpawn() {
   try {
-    yield call(fetchAllWithSpwan)
+    yield call(fetchAllWithSpawn)
+    toast.success("fetchAllWithSpawn finished")
   } catch (error) {
     yield put({ type: actionTypes.ERROR, error })
   }

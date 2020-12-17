@@ -35,6 +35,7 @@ export function* getUsersTakeLatest() {
 export function* getUsersThrottle() {
   yield throttle(5000, actionTypes.GET_USERS_T, getUsers)
 }
+
 export function* userWatcher() {
   while (yield take(actionTypes.GET_USERS_W)) {
     const bgSyncTask = yield fork(getUsers)

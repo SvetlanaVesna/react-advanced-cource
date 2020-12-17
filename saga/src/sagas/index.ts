@@ -10,6 +10,7 @@ import {
   userWatcher,
 } from './basic'
 import { runParallelCallsExample } from './parallel'
+import { getDataRace } from './race'
 
 export default function* rootSaga() {
   yield console.log('Hello Sagas!')
@@ -22,5 +23,6 @@ export default function* rootSaga() {
     getUsersThrottle(),
     userWatcher(),
     runParallelCallsExample(),
+    getDataRace()
   ])
 }
