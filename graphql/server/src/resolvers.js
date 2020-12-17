@@ -49,6 +49,7 @@ module.exports = {
     },
     addComment: async (_, params, { dataSources }) => {
       const newBook = await dataSources.booksAPI.addComment(params);
+      await pubsub.publish(COMMENT_ADDED, { commentAdded: params.comment });
       if (newBook) return newBook;
     }
   },
